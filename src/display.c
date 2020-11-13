@@ -33,7 +33,7 @@ void await_lcd()
 *********************************************************************/
 void write_cmd(unsigned char cmd)
 {
-    Check_Busy();
+    await_lcd();
     LCD_RS = 0;
     LCD_RW = 0;
     LCD_EN = 0;
@@ -52,7 +52,7 @@ void write_cmd(unsigned char cmd)
 *********************************************************************/
 void write_data(unsigned char dat)
 {
-    Check_Busy();
+    await_lcd();
     LCD_RS = 1;
     LCD_RW = 0;
     LCD_EN = 0;

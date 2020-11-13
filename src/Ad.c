@@ -4,7 +4,7 @@
 
 sbit DOUT = P2 ^ 6;      // 串行输入数据端
 sbit PD_CLK = P2 ^ 7;    // 时钟信号端
-unsigned int Offset = 0; // 零点偏移
+unsigned long Offset = 0; // 零点偏移
 float Weight = 0;        // 质量
 float WeightTemp = 0.0;  // 质量中间变量
 
@@ -49,7 +49,7 @@ void getOffset(unsigned char i)
     unsigned long AD_Sum = 0;
     while (i > 0)
     {
-        AD_Sum = AD_Sum + AD_Hx711();
+        AD_Sum = AD_Sum + Hx711();
         i--;
     }
 
@@ -62,12 +62,12 @@ void getOffset(unsigned char i)
 入口参数: UINT_32 ADvalue
 返回值  ：转化后以g为量纲的质量值
 *********************************************************************/
-unsigned float getWeight(void)
+float getWeight(void)
 {
     unsigned long Dvalue = Hx711() - Offset;    // 值会小于0
     if (Dvalue < 0)
     {
         Dvalue = 0;
     }
-    return (unsigned float)Dvalue / StandardValue * 4000;
+    return (float)Dvalue / StandardValue * 4000;
 }

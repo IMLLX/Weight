@@ -5,22 +5,25 @@ const unsigned char overWeight[] = {"超出量程"};
 const unsigned char clearTab[] = {"          "}; // 清屏某一行
 unsigned char WeightTab[6];                      // 存质量字符串
 
-float perWeight;   // 单个硬币质量
-float totalWeight; // 总质量
+float perWeight;    // 单个硬币质量
+float totalWeight;  // 总质量
+unsigned long temp; // 缓存质量
+unsigned char k = 0;
 
 void init(void);
+int loop(void);
 
 void main()
 {
     init();
     getOffset(10); // 初始化质量
-    while (!loop());
+    while (1 - loop());
 }
 
 int loop(void)
 {
-    WDT_FeedDog();
-    unsigned float temp = getWeight();
+    temp = 0;
+    temp = getWeight();
     if (temp >= 1000)
     {
         display(0, 0, overWeight);
@@ -31,31 +34,34 @@ int loop(void)
     }
     else
     {
-        weight_init();
-        unsigned char k = 0;
+        weight_init(WeightTab);
+        k = 0;
         while (temp != 0)
         {
-            WeightTable[k++] = 0x30 + temp % 10; //提取十进制最后一位转换为字符
+            WeightTab[k++] = 0x30 + temp % 10; //提取十进制最后一位转换为字符
             temp /= 10;
         }
     }
     write_cmd(0x93);
-    while(k > 0){
+    while (k > 0)
+    {
         write_data(WeightTab[k--]);
     }
+    return 0;
 }
 
 void init(void)
 {
     time_init();
     dis_init();
-    display(0, 0, title)
+    display(0, 0, title);
 }
 
 /** 调用 times 次 nop 函数*/
 void Nop(unsigned char times)
 {
-    for (int i = 0; i < times; i++)
+    int i = 0;
+    for (i = 0; i < times; i++)
     {
         _nop_();
     }
@@ -73,6 +79,7 @@ void delay(unsigned int x)
     unsigned int i, j = 110;
     for (i = 0; i < x; i++, j = 110)
     {
-        while (j--);
+        while (j--)
+            ;
     }
 }

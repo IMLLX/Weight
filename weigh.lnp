@@ -1,0 +1,7 @@
+"Ad.obj",
+"display.obj",
+"init.obj",
+"key.obj",
+"weigh.obj" 
+TO "weigh" 
+RAMSIZE(256) 

@@ -15,6 +15,6 @@ extern float WeightTemp;
 extern unsigned char clearTab[];
 
 
-extern void delay(int );
+extern void delay(unsigned int );
 extern void Nop(unsigned char times);
 

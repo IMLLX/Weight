@@ -14,15 +14,10 @@ void time_init(void)
     TR0 = 1; // 启动定时器0
 }
 
-void WDT_FeedDog(void)
-{
-    WDT_CONTR = 0x35;
-}
 
 void weight_init(unsigned char *weight)
 {
-    unsigned char i;
-    while (*weight != '/0')
+    while (*weight != '\0')
     {
         *weight++ = clearTab;
     }
