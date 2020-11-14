@@ -1,4 +1,4 @@
-C51 COMPILER V9.01   WEIGH                                                                 11/14/2020 14:09:16 PAGE 1   
+C51 COMPILER V9.01   WEIGH                                                                 11/14/2020 23:08:48 PAGE 1   
 
 
 C51 COMPILER V9.01, COMPILATION OF MODULE WEIGH
@@ -10,101 +10,109 @@ line level    source
 
    1          #include "weigh.h"
    2          
-   3          const unsigned char title[] = {"硬币称重"};
-   4          const unsigned char overWeight[] = {"超出量程"};
-   5          const unsigned char clearTab[] = {"          "}; // 清屏某一行
-   6          unsigned char WeightTab[6];                      // 存质量字符串
-   7          
-   8          float perWeight;    // 单个硬币质量
-   9          float totalWeight;  // 总质量
-  10          unsigned long temp; // 缓存质量
-  11          unsigned char k = 0;
-  12          
-  13          void init(void);
-  14          int loop(void);
-  15          
-  16          void main()
-  17          {
-  18   1          init();
-  19   1          getOffset(10); // 初始化质量
-  20   1          while (!loop())
-  21   1              ;
-  22   1      }
-  23          
-  24          int loop(void)
-  25          {
-  26   1          temp = 0;
-  27   1          temp = getWeight();
-  28   1          if (temp >= 1000)
-  29   1          {
-  30   2              display(0, 0, overWeight);
-  31   2          }
-  32   1          else if (temp == 0)
-  33   1          {
-  34   2              WeightTab[0] = '0';
-  35   2              k = 1;
-  36   2          }
-  37   1          else
-  38   1          {
-  39   2              weight_init(WeightTab);
-  40   2              k = 0;
-  41   2              while (temp != 0)
-  42   2              {
-  43   3                  WeightTab[k++] = 0x30 + temp % 10; //提取十进制最后一位转换为字符
-  44   3                  temp /= 10;
-  45   3              }
-  46   2          }
-  47   1          write_cmd(0x93);
-  48   1          while (k > 0)
-  49   1          {
-  50   2              write_data(WeightTab[k--]);
-  51   2          }
-  52   1          return 0;
-  53   1      }
-  54          
-C51 COMPILER V9.01   WEIGH                                                                 11/14/2020 14:09:16 PAGE 2   
+   3          const unsigned char code title[] = {"硬币称重"};
+   4          const unsigned char code overWeight[] = {"超出量程"};
+   5          unsigned char WeightTab[6];                           // 存质量字符串
+   6          
+   7          float perWeight;    // 单个硬币质量
+   8          float totalWeight;  // 总质量
+   9          unsigned long temp; // 缓存质量
+  10          unsigned char k = 0;
+  11          
+  12          sbit wela = P2 ^ 6;
+  13          sbit dula = P2 ^ 7;
+  14          
+  15          void init(void);
+  16          int loop(void);
+  17          
+  18          void main()
+  19          {
+  20   1          init();
+  21   1          getOffset(10); // 初始化质量
+  22   1          while (!loop())
+  23   1              ;
+  24   1      }
+  25          
+  26          int loop(void)
+  27          {
+  28   1          temp = 0;
+  29   1          temp = getWeight();
+  30   1          if (temp >= 1000)
+  31   1          {
+  32   2              display(0, 0, overWeight);
+  33   2          }
+  34   1          else if (temp == 0)
+  35   1          {
+  36   2              WeightTab[0] = '0';
+  37   2              k = 1;
+  38   2          }
+  39   1          else
+  40   1          {
+  41   2              weight_init(WeightTab);
+  42   2              k = 0;
+  43   2              while (temp != 0)
+  44   2              {
+  45   3                  WeightTab[k++] = 0x30 + temp % 10; //提取十进制最后一位转换为字符
+  46   3                  temp /= 10;
+  47   3              }
+  48   2          }
+  49   1          write_cmd(0x93);
+  50   1          while (k > 0)
+  51   1          {
+  52   2              write_data(WeightTab[k--]);
+  53   2          }
+  54   1          return 0;
+C51 COMPILER V9.01   WEIGH                                                                 11/14/2020 23:08:48 PAGE 2   
 
-  55          void init(void)
-  56          {
-  57   1          time_init();
-  58   1          dis_init();
-  59   1          display(0, 0, title);
-  60   1      }
-  61          
-  62          /** 调用 times 次 nop 函数*/
-  63          void Nop(unsigned char times)
-  64          {
-  65   1          int i = 0;
-  66   1          for (i = 0; i < times; i++)
-  67   1          {
-  68   2              _nop_();
-  69   2          }
-  70   1          return;
-  71   1      }
-  72          
-  73          /********************************************************************
-  74          函数名称: void delay(unsigned int x)        
-  75          功能简介: 晶振为11.0592MHZ时定时xms
-  76          入口参数: unsigned int x
-  77          返回值  ：无
-  78          *********************************************************************/
-  79          void delay(unsigned int x)
-  80          {
-  81   1          unsigned int i, j = 110;
-  82   1          for (i = 0; i < x; i++, j = 110)
-  83   1          {
-  84   2              while (j--)
-  85   2                  ;
-  86   2          }
-  87   1      }
+  55   1      }
+  56          
+  57          void init(void)
+  58          {
+  59   1          wela = 0;
+  60   1          dula = 0;
+  61   1          delay(10);
+  62   1          // time_init();
+  63   1          dis_init();
+  64   1          display(0, 0, title);
+  65   1          display(1, 0, title);
+  66   1          display(2, 0, title);
+  67   1          display(3, 0, title);
+  68   1      }
+  69          
+  70          /** 调用 times 次 nop 函数*/
+  71          void Nop(unsigned char times)
+  72          {
+  73   1          int i = 0;
+  74   1          for (i = 0; i < times; i++)
+  75   1          {
+  76   2              _nop_();
+  77   2          }
+  78   1          return;
+  79   1      }
+  80          
+  81          /********************************************************************
+  82          函数名称: void delay(unsigned int x)        
+  83          功能简介: 晶振为11.0592MHZ时定时xms
+  84          入口参数: unsigned int x
+  85          返回值  ：无
+  86          *********************************************************************/
+  87          void delay(unsigned int x)
+  88          {
+  89   1          unsigned int i, j = 110;
+  90   1          for (i = 0; i < x; i++, j = 110)
+  91   1          {
+  92   2              while (j--)
+  93   2                  ;
+  94   2          }
+  95   1      }
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    300    ----
-   CONSTANT SIZE    =   ----    ----
+   CODE SIZE        =    347    ----
+   CONSTANT SIZE    =     26    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----
-   DATA SIZE        =     56    ----
+   DATA SIZE        =     19    ----
    IDATA SIZE       =   ----    ----
    BIT SIZE         =   ----    ----
 END OF MODULE INFORMATION.

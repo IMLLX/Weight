@@ -2,8 +2,8 @@
 #include "Ad.h"
 #define StandardValue 1600000 // 质量基准值
 
-sbit DOUT = P1 ^ 0;       // 串行输入数据端
-sbit PD_CLK = P1 ^ 1;     // 时钟信号端
+sbit DOUT = P1^0;       // 串行输入数据端
+sbit PD_CLK = P1^1;     // 时钟信号端
 unsigned long Offset = 0; // 零点偏移
 float Weight = 0;         // 质量
 float WeightTemp = 0.0;   // 质量中间变量

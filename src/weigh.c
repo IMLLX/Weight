@@ -1,14 +1,16 @@
 #include "weigh.h"
 
-const unsigned char title[] = {"硬币称重"};
-const unsigned char overWeight[] = {"超出量程"};
-const unsigned char clearTab[] = {"          "}; // 清屏某一行
-unsigned char WeightTab[6];                      // 存质量字符串
+const unsigned char code title[] = {"硬币称重"};
+const unsigned char code overWeight[] = {"超出量程"};
+unsigned char WeightTab[6];                           // 存质量字符串
 
 float perWeight;    // 单个硬币质量
 float totalWeight;  // 总质量
 unsigned long temp; // 缓存质量
 unsigned char k = 0;
+
+sbit wela = P2 ^ 6;
+sbit dula = P2 ^ 7;
 
 void init(void);
 int loop(void);
@@ -54,9 +56,15 @@ int loop(void)
 
 void init(void)
 {
-    time_init();
+    wela = 0;
+    dula = 0;
+    delay(10);
+    // time_init();
     dis_init();
     display(0, 0, title);
+    display(1, 0, title);
+    display(2, 0, title);
+    display(3, 0, title);
 }
 
 /** 调用 times 次 nop 函数*/
