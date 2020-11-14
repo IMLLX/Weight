@@ -1,4 +1,4 @@
-C51 COMPILER V9.01   AD                                                                    11/14/2020 14:09:16 PAGE 1   
+C51 COMPILER V9.01   AD                                                                    11/14/2020 16:53:21 PAGE 1   
 
 
 C51 COMPILER V9.01, COMPILATION OF MODULE AD
@@ -12,11 +12,11 @@ line level    source
    2          #include "Ad.h"
    3          #define StandardValue 1600000 // 质量基准值
    4          
-   5          sbit DOUT = P2 ^ 6;      // 串行输入数据端
-   6          sbit PD_CLK = P2 ^ 7;    // 时钟信号端
+   5          sbit DOUT = P1 ^ 0;       // 串行输入数据端
+   6          sbit PD_CLK = P1 ^ 1;     // 时钟信号端
    7          unsigned long Offset = 0; // 零点偏移
-   8          float Weight = 0;        // 质量
-   9          float WeightTemp = 0.0;  // 质量中间变量
+   8          float Weight = 0;         // 质量
+   9          float WeightTemp = 0.0;   // 质量中间变量
   10          
   11          /********************************************************************
   12          函数名称: unsigned long AD_Hx711(void)
@@ -29,60 +29,61 @@ line level    source
   19   1          unsigned long AD_Value = 0;
   20   1          unsigned char i = 0;
   21   1          PD_CLK = 0;
-  22   1          while (DOUT);
-  23   1          for (i = 0; i < 24; i++)
-  24   1          {
-  25   2              PD_CLK = 1;
-  26   2              Nop(3);
-  27   2              AD_Value = AD_Value << 1;
-  28   2              PD_CLK = 0;
-  29   2              if (DOUT)
-  30   2              {
-  31   3                  AD_Value++;
-  32   3              }
-  33   2          }
-  34   1          PD_CLK = 1;
-  35   1          AD_Value = AD_Value ^ 0x800000; // 输出补码
-  36   1          PD_CLK = 0;
-  37   1          Nop(3);
-  38   1          return AD_Value;
-  39   1      }
-  40          
-  41          /********************************************************************
-  42          函数名称: void AD_Offset(unsigned char i)           
-  43          功能简介: AD采集零点偏移平均值，也可当去皮使用
-  44          入口参数: 采集次数
-  45          返回值  ：无
-  46          *********************************************************************/
-  47          void getOffset(unsigned char i)
-  48          {
-  49   1          unsigned long AD_Sum = 0;
-  50   1          while (i > 0)
-  51   1          {
-  52   2              AD_Sum = AD_Sum + Hx711();
-  53   2              i--;
-  54   2          }
-C51 COMPILER V9.01   AD                                                                    11/14/2020 14:09:16 PAGE 2   
+  22   1          while (DOUT)
+  23   1              ;
+  24   1          for (i = 0; i < 24; i++)
+  25   1          {
+  26   2              PD_CLK = 1;
+  27   2              Nop(3);
+  28   2              AD_Value = AD_Value << 1;
+  29   2              PD_CLK = 0;
+  30   2              if (DOUT)
+  31   2              {
+  32   3                  AD_Value++;
+  33   3              }
+  34   2          }
+  35   1          PD_CLK = 1;
+  36   1          AD_Value = AD_Value ^ 0x800000; // 输出补码
+  37   1          PD_CLK = 0;
+  38   1          Nop(3);
+  39   1          return AD_Value;
+  40   1      }
+  41          
+  42          /********************************************************************
+  43          函数名称: void AD_Offset(unsigned char i)           
+  44          功能简介: AD采集零点偏移平均值，也可当去皮使用
+  45          入口参数: 采集次数
+  46          返回值  ：无
+  47          *********************************************************************/
+  48          void getOffset(unsigned char i)
+  49          {
+  50   1          unsigned long AD_Sum = 0;
+  51   1          while (i > 0)
+  52   1          {
+  53   2              AD_Sum = AD_Sum + Hx711();
+  54   2              i--;
+C51 COMPILER V9.01   AD                                                                    11/14/2020 16:53:21 PAGE 2   
 
-  55   1      
-  56   1          Offset = (unsigned long)(AD_Sum / 5);
-  57   1      }
-  58          
-  59          /********************************************************************
-  60          函数名称: unsigned float getWeight(void)
-  61          功能简介: AD值转换为以g为单位的质量
-  62          入口参数: UINT_32 ADvalue
-  63          返回值  ：转化后以g为量纲的质量值
-  64          *********************************************************************/
-  65          float getWeight(void)
-  66          {
-  67   1          unsigned long Dvalue = Hx711() - Offset;    // 值会小于0
-  68   1          if (Dvalue < 0)
-  69   1          {
-  70   2              Dvalue = 0;
-  71   2          }
-  72   1          return (float)Dvalue / StandardValue * 4000;
-  73   1      }
+  55   2          }
+  56   1      
+  57   1          Offset = (unsigned long)(AD_Sum / 5);
+  58   1      }
+  59          
+  60          /********************************************************************
+  61          函数名称: unsigned float getWeight(void)
+  62          功能简介: AD值转换为以g为单位的质量
+  63          入口参数: UINT_32 ADvalue
+  64          返回值  ：转化后以g为量纲的质量值
+  65          *********************************************************************/
+  66          float getWeight(void)
+  67          {
+  68   1          unsigned long Dvalue = Hx711() - Offset; // 值会小于0
+  69   1          if (Dvalue < 0)
+  70   1          {
+  71   2              Dvalue = 0;
+  72   2          }
+  73   1          return (float)Dvalue / StandardValue * 4000;
+  74   1      }
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE

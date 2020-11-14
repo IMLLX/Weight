@@ -1,9 +1,9 @@
 #include "weigh.h"
 #define LCD_BUS P0      // 12864液晶接口总线
 
-sbit LCD_RS = P1 ^ 2;   // 低电平为写指令，高电平为写数据端
-sbit LCD_RW = P1 ^ 1;   // 低电平为写，高电平为读
-sbit LCD_EN = P1 ^ 0;   // 使能端
+sbit LCD_RS = P1 ^ 4;   // 低电平为写指令，高电平为写数据端
+sbit LCD_RW = P1 ^ 5;   // 低电平为写，高电平为读
+sbit LCD_EN = P1 ^ 6;   // 使能端
 
 /********************************************************************
 函数名称: void Check_Busy()		

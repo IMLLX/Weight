@@ -1,4 +1,4 @@
-C51 COMPILER V9.01   DISPLAY                                                               11/14/2020 14:13:55 PAGE 1   
+C51 COMPILER V9.01   DISPLAY                                                               11/14/2020 16:53:21 PAGE 1   
 
 
 C51 COMPILER V9.01, COMPILATION OF MODULE DISPLAY
@@ -11,9 +11,9 @@ line level    source
    1          #include "weigh.h"
    2          #define LCD_BUS P0      // 12864液晶接口总线
    3          
-   4          sbit LCD_RS = P1 ^ 2;   // 低电平为写指令，高电平为写数据端
-   5          sbit LCD_RW = P1 ^ 1;   // 低电平为写，高电平为读
-   6          sbit LCD_EN = P1 ^ 0;   // 使能端
+   4          sbit LCD_RS = P1 ^ 4;   // 低电平为写指令，高电平为写数据端
+   5          sbit LCD_RW = P1 ^ 5;   // 低电平为写，高电平为读
+   6          sbit LCD_EN = P1 ^ 6;   // 使能端
    7          
    8          /********************************************************************
    9          函数名称: void Check_Busy()         
@@ -62,7 +62,7 @@ line level    source
   52          *********************************************************************/
   53          void write_data(unsigned char dat)
   54          {
-C51 COMPILER V9.01   DISPLAY                                                               11/14/2020 14:13:55 PAGE 2   
+C51 COMPILER V9.01   DISPLAY                                                               11/14/2020 16:53:21 PAGE 2   
 
   55   1          await_lcd();
   56   1          LCD_RS = 1;
@@ -126,7 +126,7 @@ MODULE INFORMATION:   STATIC OVERLAYABLE
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----
    DATA SIZE        =   ----       6
-C51 COMPILER V9.01   DISPLAY                                                               11/14/2020 14:13:55 PAGE 3   
+C51 COMPILER V9.01   DISPLAY                                                               11/14/2020 16:53:21 PAGE 3   
 
    IDATA SIZE       =   ----    ----
    BIT SIZE         =   ----    ----

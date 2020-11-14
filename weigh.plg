@@ -8,12 +8,7 @@ Project File Date:  11/14/2020
 
 <h2>Output:</h2>
 Build target 'Target 1'
-compiling display.c...
-SRC\DISPLAY.C(53): error C141: syntax error near ')'
-SRC\DISPLAY.C(54): error C236: '_write_data': different length of parameter lists
-SRC\DISPLAY.C(59): error C141: syntax error near 'data'
-Target not created
-Build target 'Target 1'
+compiling Ad.c...
 compiling display.c...
 linking...
 Program Size: data=87.0 xdata=0 code=1942

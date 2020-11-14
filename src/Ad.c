@@ -2,11 +2,11 @@
 #include "Ad.h"
 #define StandardValue 1600000 // 质量基准值
 
-sbit DOUT = P2 ^ 6;      // 串行输入数据端
-sbit PD_CLK = P2 ^ 7;    // 时钟信号端
+sbit DOUT = P1 ^ 0;       // 串行输入数据端
+sbit PD_CLK = P1 ^ 1;     // 时钟信号端
 unsigned long Offset = 0; // 零点偏移
-float Weight = 0;        // 质量
-float WeightTemp = 0.0;  // 质量中间变量
+float Weight = 0;         // 质量
+float WeightTemp = 0.0;   // 质量中间变量
 
 /********************************************************************
 函数名称: unsigned long AD_Hx711(void)
@@ -19,7 +19,8 @@ unsigned long Hx711(void)
     unsigned long AD_Value = 0;
     unsigned char i = 0;
     PD_CLK = 0;
-    while (DOUT);
+    while (DOUT)
+        ;
     for (i = 0; i < 24; i++)
     {
         PD_CLK = 1;
@@ -64,7 +65,7 @@ void getOffset(unsigned char i)
 *********************************************************************/
 float getWeight(void)
 {
-    unsigned long Dvalue = Hx711() - Offset;    // 值会小于0
+    unsigned long Dvalue = Hx711() - Offset; // 值会小于0
     if (Dvalue < 0)
     {
         Dvalue = 0;
