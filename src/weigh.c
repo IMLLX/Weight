@@ -17,7 +17,8 @@ void main()
 {
     init();
     getOffset(10); // 初始化质量
-    while (!loop());
+    while (!loop())
+        ;
 }
 
 int loop(void)

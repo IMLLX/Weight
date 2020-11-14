@@ -1,3 +1,6 @@
+#ifndef _KEY_
+#define _KEY_
+
 #define KEY1 1      // 一毛
 #define KEY2 2      // 五毛
 #define KEY3 3      // 一元
@@ -9,3 +12,4 @@
 
 extern unsigned char readKey(void);
 
+#endif
