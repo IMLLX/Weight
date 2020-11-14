@@ -1,4 +1,4 @@
-BL51 BANKED LINKER/LOCATER V6.22                                                        11/14/2020  01:26:44  PAGE 1
+BL51 BANKED LINKER/LOCATER V6.22                                                        11/14/2020  01:32:12  PAGE 1
 
 
 BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
@@ -59,12 +59,12 @@ LINK MAP OF MODULE:  weigh (AD)
             CODE    0712H     0020H     UNIT         ?PR?AWAIT_LCD?DISPLAY
             CODE    0732H     0018H     UNIT         ?PR?TIME_INIT?INIT
             CODE    074AH     0018H     UNIT         ?PR?_NOP?WEIGH
-BL51 BANKED LINKER/LOCATER V6.22                                                      11/14/2020  01:26:44  PAGE 2
+BL51 BANKED LINKER/LOCATER V6.22                                                      11/14/2020  01:32:12  PAGE 2
 
 
-            CODE    0762H     0016H     UNIT         ?PR?MAIN?WEIGH
-            CODE    0778H     0012H     UNIT         ?PR?INIT?WEIGH
-            CODE    078AH     000FH     UNIT         ?PR?DIS_INIT?DISPLAY
+            CODE    0762H     0012H     UNIT         ?PR?INIT?WEIGH
+            CODE    0774H     0010H     UNIT         ?PR?MAIN?WEIGH
+            CODE    0784H     000FH     UNIT         ?PR?DIS_INIT?DISPLAY
 
 
 
@@ -119,7 +119,7 @@ SEGMENT                           DATA_GROUP
   +--> ?PR?_WRITE_CMD?DISPLAY
   +--> ?PR?_WRITE_DATA?DISPLAY
 
-BL51 BANKED LINKER/LOCATER V6.22                                                      11/14/2020  01:26:44  PAGE 3
+BL51 BANKED LINKER/LOCATER V6.22                                                      11/14/2020  01:32:12  PAGE 3
 
 
 ?PR?GETWEIGHT?AD                004CH    0004H
@@ -179,7 +179,7 @@ SYMBOL TABLE OF MODULE:  weigh (AD)
   C:0539H         LINE#         35
   C:054BH         LINE#         36
   C:054DH         LINE#         37
-BL51 BANKED LINKER/LOCATER V6.22                                                      11/14/2020  01:26:44  PAGE 4
+BL51 BANKED LINKER/LOCATER V6.22                                                      11/14/2020  01:32:12  PAGE 4
 
 
   C:0552H         LINE#         38
@@ -230,7 +230,7 @@ SYMBOL TABLE OF MODULE:  weigh (AD)
   D:0088H         PUBLIC        TCON
   C:06D0H         PUBLIC        _write_cmd
   B:0090H.0       PUBLIC        LCD_EN
-  C:078AH         PUBLIC        dis_init
+  C:0784H         PUBLIC        dis_init
   B:0090H.2       PUBLIC        LCD_RS
   B:0090H.1       PUBLIC        LCD_RW
   D:00C8H         PUBLIC        T2CON
@@ -239,7 +239,7 @@ SYMBOL TABLE OF MODULE:  weigh (AD)
   -------         PROC          AWAIT_LCD
   C:0712H         LINE#         14
   C:0712H         LINE#         15
-BL51 BANKED LINKER/LOCATER V6.22                                                      11/14/2020  01:26:44  PAGE 5
+BL51 BANKED LINKER/LOCATER V6.22                                                      11/14/2020  01:32:12  PAGE 5
 
 
   C:0712H         LINE#         16
@@ -284,11 +284,11 @@ SYMBOL TABLE OF MODULE:  weigh (AD)
   C:0711H         LINE#         64
   -------         ENDPROC       _WRITE_DATA
   -------         PROC          DIS_INIT
-  C:078AH         LINE#         72
-  C:078AH         LINE#         73
-  C:078AH         LINE#         74
-  C:078FH         LINE#         75
-  C:0794H         LINE#         76
+  C:0784H         LINE#         72
+  C:0784H         LINE#         73
+  C:0784H         LINE#         74
+  C:0789H         LINE#         75
+  C:078EH         LINE#         76
   -------         ENDPROC       DIS_INIT
   -------         PROC          _DISPLAY
   D:0007H         SYMBOL        x
@@ -299,7 +299,7 @@ SYMBOL TABLE OF MODULE:  weigh (AD)
   C:05B9H         LINE#         87
   C:05C7H         LINE#         88
   C:05C7H         LINE#         89
-BL51 BANKED LINKER/LOCATER V6.22                                                      11/14/2020  01:26:44  PAGE 6
+BL51 BANKED LINKER/LOCATER V6.22                                                      11/14/2020  01:32:12  PAGE 6
 
 
   C:05C7H         LINE#         90
@@ -359,7 +359,7 @@ SYMBOL TABLE OF MODULE:  weigh (AD)
   C:0747H         LINE#         14
   C:0749H         LINE#         15
   -------         ENDPROC       TIME_INIT
-BL51 BANKED LINKER/LOCATER V6.22                                                      11/14/2020  01:26:44  PAGE 7
+BL51 BANKED LINKER/LOCATER V6.22                                                      11/14/2020  01:32:12  PAGE 7
 
 
   -------         PROC          _WEIGHT_INIT
@@ -389,25 +389,25 @@ SYMBOL TABLE OF MODULE:  weigh (AD)
   D:00B8H         PUBLIC        IP
   D:0012H         PUBLIC        clearTab
   D:001DH         PUBLIC        title
-  C:0762H         PUBLIC        main
+  C:0774H         PUBLIC        main
   D:002AH         PUBLIC        overWeight
   C:074AH         PUBLIC        _Nop
   D:0098H         PUBLIC        SCON
   D:0037H         PUBLIC        perWeight
   D:0088H         PUBLIC        TCON
-  C:0778H         PUBLIC        init
+  C:0762H         PUBLIC        init
   D:003BH         PUBLIC        temp
   C:0393H         PUBLIC        loop
   D:00C8H         PUBLIC        T2CON
   D:003FH         PUBLIC        k
   D:00D0H         PUBLIC        PSW
   -------         PROC          MAIN
-  C:0762H         LINE#         16
-  C:0762H         LINE#         17
-  C:0762H         LINE#         18
-  C:0765H         LINE#         19
-  C:076AH         LINE#         20
-  C:0777H         LINE#         21
+  C:0774H         LINE#         16
+  C:0774H         LINE#         17
+  C:0774H         LINE#         18
+  C:0777H         LINE#         19
+  C:077CH         LINE#         20
+  C:0783H         LINE#         21
   -------         ENDPROC       MAIN
   -------         PROC          LOOP
   C:0393H         LINE#         23
@@ -419,7 +419,7 @@ SYMBOL TABLE OF MODULE:  weigh (AD)
   C:03BFH         LINE#         29
   C:03CBH         LINE#         30
   C:03CDH         LINE#         31
-BL51 BANKED LINKER/LOCATER V6.22                                                      11/14/2020  01:26:44  PAGE 8
+BL51 BANKED LINKER/LOCATER V6.22                                                      11/14/2020  01:32:12  PAGE 8
 
 
   C:03E0H         LINE#         32
@@ -443,11 +443,11 @@ SYMBOL TABLE OF MODULE:  weigh (AD)
   C:045CH         LINE#         51
   -------         ENDPROC       LOOP
   -------         PROC          INIT
-  C:0778H         LINE#         53
-  C:0778H         LINE#         54
-  C:0778H         LINE#         55
-  C:077BH         LINE#         56
-  C:077EH         LINE#         57
+  C:0762H         LINE#         53
+  C:0762H         LINE#         54
+  C:0762H         LINE#         55
+  C:0765H         LINE#         56
+  C:0768H         LINE#         57
   -------         ENDPROC       INIT
   -------         PROC          _NOP
   D:0007H         SYMBOL        times
@@ -479,7 +479,7 @@ SYMBOL TABLE OF MODULE:  weigh (AD)
   C:06ACH         LINE#         85
   -------         ENDPROC       _DELAY
   -------         ENDMOD        WEIGH
-BL51 BANKED LINKER/LOCATER V6.22                                                      11/14/2020  01:26:44  PAGE 9
+BL51 BANKED LINKER/LOCATER V6.22                                                      11/14/2020  01:32:12  PAGE 9
 
 
 
@@ -525,5 +525,5 @@ SYMBOL TABLE OF MODULE:  weigh (AD)
   C:0380H         PUBLIC        ?C?LSHL
   -------         ENDMOD        ?C?LSHL
 
-Program Size: data=87.0 xdata=0 code=1945
+Program Size: data=87.0 xdata=0 code=1939
 LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

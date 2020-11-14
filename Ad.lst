@@ -1,4 +1,4 @@
-C51 COMPILER V9.01   AD                                                                    11/14/2020 01:24:40 PAGE 1   
+C51 COMPILER V9.01   AD                                                                    11/14/2020 01:32:12 PAGE 1   
 
 
 C51 COMPILER V9.01, COMPILATION OF MODULE AD
@@ -62,7 +62,7 @@ line level    source
   52   2              AD_Sum = AD_Sum + Hx711();
   53   2              i--;
   54   2          }
-C51 COMPILER V9.01   AD                                                                    11/14/2020 01:24:40 PAGE 2   
+C51 COMPILER V9.01   AD                                                                    11/14/2020 01:32:12 PAGE 2   
 
   55   1      
   56   1          Offset = (unsigned long)(AD_Sum / 5);

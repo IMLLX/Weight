@@ -17,7 +17,7 @@ void main()
 {
     init();
     getOffset(10); // 初始化质量
-    while (1 - loop());
+    while (!loop());
 }
 
 int loop(void)
@@ -31,6 +31,7 @@ int loop(void)
     else if (temp == 0)
     {
         WeightTab[0] = '0';
+        k = 1;
     }
     else
     {

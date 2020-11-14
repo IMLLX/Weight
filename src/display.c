@@ -50,13 +50,13 @@ void write_cmd(unsigned char cmd)
 入口参数: UINT_8 data
 返回值  ：无
 *********************************************************************/
-void write_data(unsigned char dat)
+void write_data(unsigned char data)
 {
     await_lcd();
     LCD_RS = 1;
     LCD_RW = 0;
     LCD_EN = 0;
-    LCD_BUS = dat;
+    LCD_BUS = data;
     delay(5);
     LCD_EN = 1; //在使能端LCD_EN上升沿时把数据data写入
     delay(5);

@@ -7,3 +7,303 @@ D:\Program\Project\KeChuangBei\Weight\weigh.uvproj
 Project File Date:  11/13/2020
 
 <h2>Output:</h2>
+Build target 'Target 1'
+compiling Ad.c...
+SRC\AD.C(7): warning C231: 'Offset': redefinition
+SRC\AD.C(52): warning C206: 'AD_Hx711': missing function-prototype
+SRC\AD.C(65): error C141: syntax error near 'float'
+SRC\AD.C(72): error C141: syntax error near 'float', expected ')'
+compiling display.c...
+SRC\DISPLAY.C(36): warning C206: 'Check_Busy': missing function-prototype
+compiling init.c...
+SRC\INIT.C(19): error C202: 'WDT_CONTR': undefined identifier
+SRC\INIT.C(23): error C236: '_weight_init': different length of parameter lists
+SRC\INIT.C(25): error C101: ''/': invalid character constant
+SRC\INIT.C(25): error C141: syntax error near '0'
+SRC\INIT.C(25): error C101: '')': invalid character constant
+SRC\INIT.C(25): error C141: syntax error near '')'
+SRC\INIT.C(26): error C141: syntax error near '{'
+compiling key.c...
+compiling weigh.c...
+SRC\WEIGH.C(17): warning C206: 'loop': missing function-prototype
+SRC\WEIGH.C(23): error C141: syntax error near 'unsigned'
+SRC\WEIGH.C(23): error C202: 'temp': undefined identifier
+SRC\WEIGH.C(24): error C202: 'temp': undefined identifier
+SRC\WEIGH.C(28): error C202: 'temp': undefined identifier
+Target not created
+Build target 'Target 1'
+compiling Ad.c...
+SRC\AD.C(7): warning C231: 'Offset': redefinition
+SRC\AD.C(52): warning C206: 'AD_Hx711': missing function-prototype
+SRC\AD.C(65): error C141: syntax error near 'float'
+SRC\AD.C(72): error C141: syntax error near 'float', expected ')'
+compiling init.c...
+SRC\INIT.C(19): error C202: 'WDT_CONTR': undefined identifier
+SRC\INIT.C(23): error C236: '_weight_init': different length of parameter lists
+SRC\INIT.C(25): error C101: ''/': invalid character constant
+SRC\INIT.C(25): error C141: syntax error near '0'
+SRC\INIT.C(25): error C101: '')': invalid character constant
+SRC\INIT.C(25): error C141: syntax error near '')'
+SRC\INIT.C(26): error C141: syntax error near '{'
+compiling weigh.c...
+SRC\WEIGH.C(18): error C193: '!': illegal type conversion from/to 'void'
+SRC\WEIGH.C(22): error C231: 'loop': redefinition
+SRC\WEIGH.C(24): error C141: syntax error near 'unsigned'
+SRC\WEIGH.C(24): error C202: 'temp': undefined identifier
+SRC\WEIGH.C(25): error C202: 'temp': undefined identifier
+SRC\WEIGH.C(29): error C202: 'temp': undefined identifier
+Target not created
+Build target 'Target 1'
+compiling Ad.c...
+SRC\AD.C(7): warning C231: 'Offset': redefinition
+SRC\AD.C(52): warning C206: 'AD_Hx711': missing function-prototype
+SRC\AD.C(65): error C141: syntax error near 'float'
+SRC\AD.C(72): error C141: syntax error near 'float', expected ')'
+compiling init.c...
+SRC\INIT.C(19): error C202: 'WDT_CONTR': undefined identifier
+SRC\INIT.C(23): error C236: '_weight_init': different length of parameter lists
+SRC\INIT.C(25): error C101: ''/': invalid character constant
+SRC\INIT.C(25): error C141: syntax error near '0'
+SRC\INIT.C(25): error C101: '')': invalid character constant
+SRC\INIT.C(25): error C141: syntax error near '')'
+SRC\INIT.C(26): error C141: syntax error near '{'
+compiling weigh.c...
+SRC\WEIGH.C(18): error C193: '!': illegal type conversion from/to 'void'
+SRC\WEIGH.C(22): error C231: 'loop': redefinition
+SRC\WEIGH.C(24): error C141: syntax error near 'unsigned'
+SRC\WEIGH.C(24): error C202: 'temp': undefined identifier
+SRC\WEIGH.C(25): error C202: 'temp': undefined identifier
+SRC\WEIGH.C(29): error C202: 'temp': undefined identifier
+Target not created
+Build target 'Target 1'
+compiling Ad.c...
+SRC\AD.C(7): warning C231: 'Offset': redefinition
+SRC\AD.C(52): warning C206: 'AD_Hx711': missing function-prototype
+SRC\AD.C(65): error C141: syntax error near 'float'
+SRC\AD.C(72): error C141: syntax error near 'float', expected ')'
+compiling init.c...
+SRC\INIT.C(19): error C202: 'WDT_CONTR': undefined identifier
+SRC\INIT.C(23): error C236: '_weight_init': different length of parameter lists
+SRC\INIT.C(25): error C101: ''/': invalid character constant
+SRC\INIT.C(25): error C141: syntax error near '0'
+SRC\INIT.C(25): error C101: '')': invalid character constant
+SRC\INIT.C(25): error C141: syntax error near '')'
+SRC\INIT.C(26): error C141: syntax error near '{'
+compiling weigh.c...
+SRC\WEIGH.C(18): error C193: '-': illegal type conversion from/to 'void'
+SRC\WEIGH.C(22): error C231: 'loop': redefinition
+SRC\WEIGH.C(24): error C141: syntax error near 'unsigned'
+SRC\WEIGH.C(24): error C202: 'temp': undefined identifier
+SRC\WEIGH.C(25): error C202: 'temp': undefined identifier
+SRC\WEIGH.C(29): error C202: 'temp': undefined identifier
+Target not created
+Build target 'Target 1'
+compiling Ad.c...
+SRC\AD.C(7): warning C231: 'Offset': redefinition
+SRC\AD.C(65): error C141: syntax error near 'float'
+SRC\AD.C(72): error C141: syntax error near 'float', expected ')'
+compiling display.c...
+SRC\DISPLAY.C(36): warning C206: 'Check_Busy': missing function-prototype
+compiling init.c...
+SRC\INIT.C(19): error C202: 'WDT_CONTR': undefined identifier
+compiling key.c...
+compiling weigh.c...
+SRC\WEIGH.C(18): error C193: '-': illegal type conversion from/to 'void'
+SRC\WEIGH.C(22): error C231: 'loop': redefinition
+SRC\WEIGH.C(24): error C141: syntax error near 'unsigned'
+SRC\WEIGH.C(24): error C202: 'temp': undefined identifier
+SRC\WEIGH.C(25): error C202: 'temp': undefined identifier
+SRC\WEIGH.C(29): error C202: 'temp': undefined identifier
+Target not created
+Build target 'Target 1'
+compiling Ad.c...
+SRC\AD.C(7): warning C231: 'Offset': redefinition
+SRC\AD.C(65): error C141: syntax error near 'float'
+SRC\AD.C(72): error C141: syntax error near 'float', expected ')'
+compiling init.c...
+SRC\INIT.C(19): error C202: 'WDT_CONTR': undefined identifier
+compiling weigh.c...
+SRC\WEIGH.C(24): error C141: syntax error near 'unsigned'
+SRC\WEIGH.C(24): error C202: 'temp': undefined identifier
+SRC\WEIGH.C(25): error C202: 'temp': undefined identifier
+SRC\WEIGH.C(29): error C202: 'temp': undefined identifier
+Target not created
+Build target 'Target 1'
+compiling Ad.c...
+SRC\AD.C(7): warning C231: 'Offset': redefinition
+SRC\AD.C(65): error C141: syntax error near 'float'
+SRC\AD.C(72): error C141: syntax error near 'float', expected ')'
+compiling init.c...
+SRC\INIT.C(19): error C202: 'WDT_CONTR': undefined identifier
+compiling weigh.c...
+SRC\WEIGH.C(24): error C141: syntax error near 'unsigned'
+SRC\WEIGH.C(24): error C202: 'temp': undefined identifier
+SRC\WEIGH.C(25): error C202: 'temp': undefined identifier
+SRC\WEIGH.C(29): error C202: 'temp': undefined identifier
+Target not created
+Build target 'Target 1'
+compiling Ad.c...
+SRC\AD.C(65): error C141: syntax error near 'float'
+SRC\AD.C(72): error C141: syntax error near 'float', expected ')'
+compiling init.c...
+SRC\INIT.C(19): error C202: 'WDT_CONTR': undefined identifier
+compiling weigh.c...
+SRC\WEIGH.C(24): error C141: syntax error near 'unsigned'
+SRC\WEIGH.C(24): error C202: 'temp': undefined identifier
+SRC\WEIGH.C(25): error C202: 'temp': undefined identifier
+SRC\WEIGH.C(29): error C202: 'temp': undefined identifier
+Target not created
+Build target 'Target 1'
+compiling Ad.c...
+SRC\AD.C(72): error C141: syntax error near 'float', expected ')'
+compiling init.c...
+SRC\INIT.C(19): error C202: 'WDT_CONTR': undefined identifier
+compiling weigh.c...
+SRC\WEIGH.C(24): error C141: syntax error near 'float'
+SRC\WEIGH.C(24): error C202: 'temp': undefined identifier
+SRC\WEIGH.C(25): error C202: 'temp': undefined identifier
+SRC\WEIGH.C(29): error C202: 'temp': undefined identifier
+Target not created
+Build target 'Target 1'
+compiling Ad.c...
+compiling init.c...
+SRC\INIT.C(19): error C202: 'WDT_CONTR': undefined identifier
+compiling weigh.c...
+SRC\WEIGH.C(24): error C141: syntax error near 'float'
+SRC\WEIGH.C(24): error C202: 'temp': undefined identifier
+SRC\WEIGH.C(25): error C202: 'temp': undefined identifier
+SRC\WEIGH.C(29): error C202: 'temp': undefined identifier
+Target not created
+Build target 'Target 1'
+compiling init.c...
+SRC\INIT.C(19): error C202: 'WDT_CONTR': undefined identifier
+compiling weigh.c...
+SRC\WEIGH.C(38): warning C209: '_weight_init': too few actual parameters
+SRC\WEIGH.C(39): error C141: syntax error near 'unsigned'
+SRC\WEIGH.C(39): error C202: 'k': undefined identifier
+SRC\WEIGH.C(42): error C202: 'k': undefined identifier
+SRC\WEIGH.C(47): error C202: 'k': undefined identifier
+SRC\WEIGH.C(49): error C202: 'k': undefined identifier
+SRC\WEIGH.C(59): error C141: syntax error near '}'
+SRC\WEIGH.C(64): error C141: syntax error near 'int'
+SRC\WEIGH.C(64): error C202: 'i': undefined identifier
+SRC\WEIGH.C(64): error C202: 'i': undefined identifier
+SRC\WEIGH.C(64): error C202: 'i': undefined identifier
+SRC\WEIGH.C(64): error C141: syntax error near ')'
+Target not created
+Build target 'Target 1'
+compiling init.c...
+SRC\INIT.C(19): error C202: 'WDT_CONTR': undefined identifier
+compiling weigh.c...
+SRC\WEIGH.C(39): error C141: syntax error near 'unsigned'
+SRC\WEIGH.C(39): error C202: 'k': undefined identifier
+SRC\WEIGH.C(42): error C202: 'k': undefined identifier
+SRC\WEIGH.C(47): error C202: 'k': undefined identifier
+SRC\WEIGH.C(49): error C202: 'k': undefined identifier
+SRC\WEIGH.C(59): error C141: syntax error near '}'
+SRC\WEIGH.C(64): error C141: syntax error near 'int'
+SRC\WEIGH.C(64): error C202: 'i': undefined identifier
+SRC\WEIGH.C(64): error C202: 'i': undefined identifier
+SRC\WEIGH.C(64): error C202: 'i': undefined identifier
+SRC\WEIGH.C(64): error C141: syntax error near ')'
+Target not created
+Build target 'Target 1'
+compiling init.c...
+SRC\INIT.C(19): error C202: 'WDT_CONTR': undefined identifier
+compiling weigh.c...
+SRC\WEIGH.C(43): error C202: 'WeightTable': undefined identifier
+SRC\WEIGH.C(60): error C141: syntax error near '}'
+SRC\WEIGH.C(65): error C141: syntax error near 'int'
+SRC\WEIGH.C(65): error C202: 'i': undefined identifier
+SRC\WEIGH.C(65): error C202: 'i': undefined identifier
+SRC\WEIGH.C(65): error C202: 'i': undefined identifier
+SRC\WEIGH.C(65): error C141: syntax error near ')'
+Target not created
+Build target 'Target 1'
+compiling init.c...
+SRC\INIT.C(19): error C202: 'WDT_CONTR': undefined identifier
+compiling weigh.c...
+SRC\WEIGH.C(43): error C193: '': bad operand type
+SRC\WEIGH.C(60): error C141: syntax error near '}'
+Target not created
+Build target 'Target 1'
+compiling init.c...
+SRC\INIT.C(19): error C202: 'WDT_CONTR': undefined identifier
+compiling weigh.c...
+SRC\WEIGH.C(43): error C193: '': bad operand type
+Target not created
+Build target 'Target 1'
+compiling init.c...
+SRC\INIT.C(19): error C202: 'WDT_CONTR': undefined identifier
+compiling weigh.c...
+SRC\WEIGH.C(80): warning C235: parameter 1: different types
+Target not created
+Build target 'Target 1'
+compiling Ad.c...
+compiling display.c...
+SRC\DISPLAY.C(36): warning C206: 'Check_Busy': missing function-prototype
+compiling init.c...
+SRC\INIT.C(19): error C202: 'WDT_CONTR': undefined identifier
+compiling weigh.c...
+Target not created
+Build target 'Target 1'
+compiling display.c...
+SRC\DISPLAY.C(55): warning C206: 'Check_Busy': missing function-prototype
+compiling init.c...
+SRC\INIT.C(19): error C202: 'WDT_CONTR': undefined identifier
+Target not created
+Build target 'Target 1'
+compiling display.c...
+compiling init.c...
+SRC\INIT.C(19): error C202: 'WDT_CONTR': undefined identifier
+Target not created
+Build target 'Target 1'
+compiling init.c...
+SRC\INIT.C(19): error C202: 'WDT_CONTR': undefined identifier
+Target not created
+Build target 'Target 1'
+compiling Ad.c...
+compiling display.c...
+compiling init.c...
+SRC\INIT.C(19): error C202: 'WDT_CONTR': undefined identifier
+compiling weigh.c...
+SRC\WEIGH.C(26): warning C206: 'WDT_FeedDog': missing function-prototype
+Target not created
+Build target 'Target 1'
+compiling init.c...
+SRC\INIT.C(20): warning C280: 'i': unreferenced local variable
+linking...
+*** WARNING L1: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  WDT_FEEDDOG
+    MODULE:  weigh.obj (WEIGH)
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  WDT_FEEDDOG
+    MODULE:  weigh.obj (WEIGH)
+    ADDRESS: 039DH
+Program Size: data=87.0 xdata=0 code=1948
+"weigh" - 0 Error(s), 3 Warning(s).
+Build target 'Target 1'
+compiling init.c...
+linking...
+*** WARNING L1: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  WDT_FEEDDOG
+    MODULE:  weigh.obj (WEIGH)
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  WDT_FEEDDOG
+    MODULE:  weigh.obj (WEIGH)
+    ADDRESS: 039DH
+Program Size: data=87.0 xdata=0 code=1948
+"weigh" - 0 Error(s), 2 Warning(s).
+Build target 'Target 1'
+compiling weigh.c...
+linking...
+Program Size: data=87.0 xdata=0 code=1945
+"weigh" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+compiling Ad.c...
+compiling display.c...
+compiling init.c...
+compiling weigh.c...
+linking...
+Program Size: data=87.0 xdata=0 code=1939
+"weigh" - 0 Error(s), 0 Warning(s).
