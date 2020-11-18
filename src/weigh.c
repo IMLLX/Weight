@@ -1,24 +1,50 @@
 #include "weigh.h"
 
-const unsigned char code title[] = {"ç¡¬å¸ç§°é‡"};
-const unsigned char code overWeight[] = {"è¶…å‡ºé‡ç¨‹"};
-unsigned char WeightTab[6];                           // å­˜è´¨é‡å­—ç¬¦ä¸²
+const unsigned char code title[] = {"Ó²±Ò³ÆÖØ"};
+const unsigned char code overWeight[] = {"³¬³öÁ¿³Ì"};
+unsigned char WeightTab[6]; // ´æÖÊÁ¿×Ö·û´®
+unsigned char code clearTable[] = {"          "};			 // Çå¿Õ
 
-float perWeight;    // å•ä¸ªç¡¬å¸è´¨é‡
-float totalWeight;  // æ€»è´¨é‡
-unsigned long temp; // ç¼“å­˜è´¨é‡
+unsigned char WeightString[8];
+float perWeight;    // µ¥¸öÓ²±ÒÖÊÁ¿
+float totalWeight;  // ×ÜÖÊÁ¿
+unsigned long temp; // »º´æÖÊÁ¿
 unsigned char k = 0;
+unsigned char t;
+
 
 sbit wela = P2 ^ 6;
 sbit dula = P2 ^ 7;
 
 void init(void);
 int loop(void);
+void mitoa(int, char str[]);
+
+void mitoa(int num, char str[])
+{
+    int sign;
+    unsigned char i = 0, j = 0;
+    unsigned char temp[10];
+    sign = num;
+    do
+    {
+        temp[i] = sign % 10 + '0';
+        sign /= 10;
+        i++;
+    } while (sign > 0);
+    while (i > 0)
+    {
+        str[j] = temp[i - 1];
+        j++;
+        i--;
+    }
+    str[j] = '\0';
+}
 
 void main()
 {
     init();
-    getOffset(10); // åˆå§‹åŒ–è´¨é‡
+    getOffset(10); // ³õÊ¼»¯ÖÊÁ¿
     while (!loop())
         ;
 }
@@ -27,22 +53,22 @@ int loop(void)
 {
     temp = 0;
     temp = getWeight();
-    if (temp >= 1000)
-    {
-        display(0, 0, overWeight);
-    }
-    else if (temp == 0)
+    // if (temp >= 1000)
+    // {
+    //     display(0, 0, overWeight);
+    // }
+    if (temp == 0)
     {
         WeightTab[0] = '0';
         k = 1;
     }
     else
     {
-        weight_init(WeightTab);
+        init_WeiTag(WeightTab,clearTable);
         k = 0;
         while (temp != 0)
         {
-            WeightTab[k++] = 0x30 + temp % 10; //æå–åè¿›åˆ¶æœ€åä¸€ä½è½¬æ¢ä¸ºå­—ç¬¦
+            WeightTab[k++] = 0x30 + temp % 10; //ÌáÈ¡Ê®½øÖÆ×îºóÒ»Î»×ª»»Îª×Ö·û
             temp /= 10;
         }
     }
@@ -56,18 +82,20 @@ int loop(void)
 
 void init(void)
 {
-    wela = 0;
+    dula = 1;
+    P0 = 0xff;
     dula = 0;
+    wela = 1;
+    P0 = 0x00;
+    wela = 0;
     delay(10);
     // time_init();
     dis_init();
-    display(0, 0, title);
-    display(1, 0, title);
-    display(2, 0, title);
-    display(3, 0, title);
+    display(0, 0, "Hello World");
+    display(2,0,title);
 }
 
-/** è°ƒç”¨ times æ¬¡ nop å‡½æ•°*/
+/** µ÷ÓÃ times ´Î nop º¯Êı*/
 void Nop(unsigned char times)
 {
     int i = 0;
@@ -79,17 +107,17 @@ void Nop(unsigned char times)
 }
 
 /********************************************************************
-å‡½æ•°åç§°: void delay(unsigned int x)	
-åŠŸèƒ½ç®€ä»‹: æ™¶æŒ¯ä¸º11.0592MHZæ—¶å®šæ—¶xms
-å…¥å£å‚æ•°: unsigned int x
-è¿”å›å€¼  ï¼šæ— 
+º¯ÊıÃû³Æ: void delay(unsigned int x)	
+¹¦ÄÜ¼ò½é: ¾§ÕñÎª11.0592MHZÊ±¶¨Ê±xms
+Èë¿Ú²ÎÊı: unsigned int x
+·µ»ØÖµ  £ºÎŞ
 *********************************************************************/
 void delay(unsigned int x)
 {
     unsigned int i, j = 110;
-    for (i = 0; i < x; i++, j = 110)
+    for (i = 0; i < x; i++)
     {
-        while (j--)
+        for (j = 0; j < 100; j++)
             ;
     }
 }

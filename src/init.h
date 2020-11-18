@@ -4,6 +4,6 @@
 
 
 extern void time_init(void);
-extern void weight_init(unsigned char *);
+extern void init_WeiTag(unsigned char *,unsigned char *);
 
 #endif

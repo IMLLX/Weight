@@ -3,20 +3,28 @@
 
 void time_init(void)
 {
-    TMOD = 0X11; // è®¾ç½®å®šæ—¶å™¨0,1ä¸ºå·¥ä½œæ¨¡å¼1
+    TMOD = 0X11; // ÉèÖÃ¶¨Ê±Æ÷0,1Îª¹¤×÷Ä£Ê½1
     TH0 = 238;
-    TL0 = 0;    // è£…åˆå€¼,å®šæ—¶æ—¶é—´ä¸º5ms
-    EA = 1;  // å¼€å¯æ€»ä¸­æ–­å…è®¸
-    ET0 = 1; // å¼€å¯å®šæ—¶å™¨0ä¸­æ–­
-    ET1 = 1; // å¼€å¯å®šæ—¶å™¨1ä¸­æ–­
-    TR0 = 1; // å¯åŠ¨å®šæ—¶å™¨0
+    TL0 = 0; // ×°³õÖµ,¶¨Ê±Ê±¼äÎª5ms
+    EA = 1;  // ¿ªÆô×ÜÖĞ¶ÏÔÊĞí
+    ET0 = 1; // ¿ªÆô¶¨Ê±Æ÷0ÖĞ¶Ï
+    ET1 = 1; // ¿ªÆô¶¨Ê±Æ÷1ÖĞ¶Ï
+    TR0 = 1; // Æô¶¯¶¨Ê±Æ÷0
 }
 
+// void weight_init(unsigned char *weight)
+// {
+//     while (*weight != '\0')
+//     {
+//         *weight++ = clearTab;
+//     }
+// }
 
-void weight_init(unsigned char *weight)
+void init_WeiTag(unsigned char *str1, unsigned char *str2)
 {
-    while (*weight != '\0')
+    unsigned char i;
+    for (i = 0; i < 5; i++)
     {
-        *weight++ = clearTab;
+        *str1++ = *str2;
     }
 }

@@ -1,26 +1,25 @@
 #include "weigh.h"
 #include "Ad.h"
-#define StandardValue 1600000 // è´¨é‡åŸºå‡†å€¼
+#define StandardValue 1600000 // ÖÊÁ¿»ù×¼Öµ
 
-sbit DOUT = P1^0;       // ä¸²è¡Œè¾“å…¥æ•°æ®ç«¯
-sbit PD_CLK = P1^1;     // æ—¶é’Ÿä¿¡å·ç«¯
-unsigned long Offset = 0; // é›¶ç‚¹åç§»
-float Weight = 0;         // è´¨é‡
-float WeightTemp = 0.0;   // è´¨é‡ä¸­é—´å˜é‡
+sbit DOUT = P1^3;       // ´®ĞĞÊäÈëÊı¾İ¶Ë
+sbit PD_CLK = P1^4;     // Ê±ÖÓĞÅºÅ¶Ë
+unsigned long Offset = 0; // ÁãµãÆ«ÒÆ
+float Weight = 0;         // ÖÊÁ¿
+float WeightTemp = 0.0;   // ÖÊÁ¿ÖĞ¼ä±äÁ¿
 
 /********************************************************************
-å‡½æ•°åç§°: unsigned long AD_Hx711(void)
-åŠŸèƒ½ç®€ä»‹: ADé‡‡é›†
-å…¥å£å‚æ•°: æ— 
-è¿”å›å€¼  ï¼šæ¨¡æ‹Ÿç”µå‹ç»è¿‡ADè½¬åŒ–åçš„æ•°å­—é‡
+º¯ÊıÃû³Æ: unsigned long AD_Hx711(void)
+¹¦ÄÜ¼ò½é: AD²É¼¯
+Èë¿Ú²ÎÊı: ÎŞ
+·µ»ØÖµ  £ºÄ£ÄâµçÑ¹¾­¹ıAD×ª»¯ºóµÄÊı×ÖÁ¿
 *********************************************************************/
 unsigned long Hx711(void)
 {
     unsigned long AD_Value = 0;
     unsigned char i = 0;
     PD_CLK = 0;
-    while (DOUT)
-        ;
+    while (DOUT);
     for (i = 0; i < 24; i++)
     {
         PD_CLK = 1;
@@ -33,17 +32,17 @@ unsigned long Hx711(void)
         }
     }
     PD_CLK = 1;
-    AD_Value = AD_Value ^ 0x800000; // è¾“å‡ºè¡¥ç 
+    AD_Value = AD_Value ^ 0x800000; // Êä³ö²¹Âë
     PD_CLK = 0;
     Nop(3);
     return AD_Value;
 }
 
 /********************************************************************
-å‡½æ•°åç§°: void AD_Offset(unsigned char i)		
-åŠŸèƒ½ç®€ä»‹: ADé‡‡é›†é›¶ç‚¹åç§»å¹³å‡å€¼ï¼Œä¹Ÿå¯å½“å»çš®ä½¿ç”¨
-å…¥å£å‚æ•°: é‡‡é›†æ¬¡æ•°
-è¿”å›å€¼  ï¼šæ— 
+º¯ÊıÃû³Æ: void AD_Offset(unsigned char i)		
+¹¦ÄÜ¼ò½é: AD²É¼¯ÁãµãÆ«ÒÆÆ½¾ùÖµ£¬Ò²¿Éµ±È¥Æ¤Ê¹ÓÃ
+Èë¿Ú²ÎÊı: ²É¼¯´ÎÊı
+·µ»ØÖµ  £ºÎŞ
 *********************************************************************/
 void getOffset(unsigned char i)
 {
@@ -58,14 +57,14 @@ void getOffset(unsigned char i)
 }
 
 /********************************************************************
-å‡½æ•°åç§°: unsigned float getWeight(void)
-åŠŸèƒ½ç®€ä»‹: ADå€¼è½¬æ¢ä¸ºä»¥gä¸ºå•ä½çš„è´¨é‡
-å…¥å£å‚æ•°: UINT_32 ADvalue
-è¿”å›å€¼  ï¼šè½¬åŒ–åä»¥gä¸ºé‡çº²çš„è´¨é‡å€¼
+º¯ÊıÃû³Æ: unsigned float getWeight(void)
+¹¦ÄÜ¼ò½é: ADÖµ×ª»»ÎªÒÔgÎªµ¥Î»µÄÖÊÁ¿
+Èë¿Ú²ÎÊı: UINT_32 ADvalue
+·µ»ØÖµ  £º×ª»¯ºóÒÔgÎªÁ¿¸ÙµÄÖÊÁ¿Öµ
 *********************************************************************/
 float getWeight(void)
 {
-    unsigned long Dvalue = Hx711() - Offset; // å€¼ä¼šå°äº0
+    unsigned long Dvalue = Hx711() - Offset; // Öµ»áĞ¡ÓÚ0
     if (Dvalue < 0)
     {
         Dvalue = 0;

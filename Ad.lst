@@ -1,4 +1,4 @@
-C51 COMPILER V9.01   AD                                                                    11/14/2020 23:08:47 PAGE 1   
+C51 COMPILER V9.01   AD                                                                    11/16/2020 22:49:56 PAGE 1   
 
 
 C51 COMPILER V9.01, COMPILATION OF MODULE AD
@@ -10,80 +10,79 @@ line level    source
 
    1          #include "weigh.h"
    2          #include "Ad.h"
-   3          #define StandardValue 1600000 // è´¨é‡åŸºå‡†å€¼
+   3          #define StandardValue 1600000 // ÖÊÁ¿»ù×¼Öµ
    4          
-   5          sbit DOUT = P1^0;       // ä¸²è¡Œè¾“å…¥æ•°æ®ç«¯
-   6          sbit PD_CLK = P1^1;     // æ—¶é’Ÿä¿¡å·ç«¯
-   7          unsigned long Offset = 0; // é›¶ç‚¹åç§»
-   8          float Weight = 0;         // è´¨é‡
-   9          float WeightTemp = 0.0;   // è´¨é‡ä¸­é—´å˜é‡
+   5          sbit DOUT = P1^3;       // ´®ĞĞÊäÈëÊı¾İ¶Ë
+   6          sbit PD_CLK = P1^4;     // Ê±ÖÓĞÅºÅ¶Ë
+   7          unsigned long Offset = 0; // ÁãµãÆ«ÒÆ
+   8          float Weight = 0;         // ÖÊÁ¿
+   9          float WeightTemp = 0.0;   // ÖÊÁ¿ÖĞ¼ä±äÁ¿
   10          
   11          /********************************************************************
-  12          å‡½æ•°åç§°: unsigned long AD_Hx711(void)
-  13          åŠŸèƒ½ç®€ä»‹: ADé‡‡é›†
-  14          å…¥å£å‚æ•°: æ— 
-  15          è¿”å›å€¼  ï¼šæ¨¡æ‹Ÿç”µå‹ç»è¿‡ADè½¬åŒ–åçš„æ•°å­—é‡
+  12          º¯ÊıÃû³Æ: unsigned long AD_Hx711(void)
+  13          ¹¦ÄÜ¼ò½é: AD²É¼¯
+  14          Èë¿Ú²ÎÊı: ÎŞ
+  15          ·µ»ØÖµ  £ºÄ£ÄâµçÑ¹¾­¹ıAD×ª»¯ºóµÄÊı×ÖÁ¿
   16          *********************************************************************/
   17          unsigned long Hx711(void)
   18          {
   19   1          unsigned long AD_Value = 0;
   20   1          unsigned char i = 0;
   21   1          PD_CLK = 0;
-  22   1          while (DOUT)
-  23   1              ;
-  24   1          for (i = 0; i < 24; i++)
-  25   1          {
-  26   2              PD_CLK = 1;
-  27   2              Nop(3);
-  28   2              AD_Value = AD_Value << 1;
-  29   2              PD_CLK = 0;
-  30   2              if (DOUT)
-  31   2              {
-  32   3                  AD_Value++;
-  33   3              }
-  34   2          }
-  35   1          PD_CLK = 1;
-  36   1          AD_Value = AD_Value ^ 0x800000; // è¾“å‡ºè¡¥ç 
-  37   1          PD_CLK = 0;
-  38   1          Nop(3);
-  39   1          return AD_Value;
-  40   1      }
-  41          
-  42          /********************************************************************
-  43          å‡½æ•°åç§°: void AD_Offset(unsigned char i)           
-  44          åŠŸèƒ½ç®€ä»‹: ADé‡‡é›†é›¶ç‚¹åç§»å¹³å‡å€¼ï¼Œä¹Ÿå¯å½“å»çš®ä½¿ç”¨
-  45          å…¥å£å‚æ•°: é‡‡é›†æ¬¡æ•°
-  46          è¿”å›å€¼  ï¼šæ— 
-  47          *********************************************************************/
-  48          void getOffset(unsigned char i)
-  49          {
-  50   1          unsigned long AD_Sum = 0;
-  51   1          while (i > 0)
-  52   1          {
-  53   2              AD_Sum = AD_Sum + Hx711();
-  54   2              i--;
-C51 COMPILER V9.01   AD                                                                    11/14/2020 23:08:47 PAGE 2   
+  22   1          while (DOUT);
+  23   1          for (i = 0; i < 24; i++)
+  24   1          {
+  25   2              PD_CLK = 1;
+  26   2              Nop(3);
+  27   2              AD_Value = AD_Value << 1;
+  28   2              PD_CLK = 0;
+  29   2              if (DOUT)
+  30   2              {
+  31   3                  AD_Value++;
+  32   3              }
+  33   2          }
+  34   1          PD_CLK = 1;
+  35   1          AD_Value = AD_Value ^ 0x800000; // Êä³ö²¹Âë
+  36   1          PD_CLK = 0;
+  37   1          Nop(3);
+  38   1          return AD_Value;
+  39   1      }
+  40          
+  41          /********************************************************************
+  42          º¯ÊıÃû³Æ: void AD_Offset(unsigned char i)               
+  43          ¹¦ÄÜ¼ò½é: AD²É¼¯ÁãµãÆ«ÒÆÆ½¾ùÖµ£¬Ò²¿Éµ±È¥Æ¤Ê¹ÓÃ
+  44          Èë¿Ú²ÎÊı: ²É¼¯´ÎÊı
+  45          ·µ»ØÖµ  £ºÎŞ
+  46          *********************************************************************/
+  47          void getOffset(unsigned char i)
+  48          {
+  49   1          unsigned long AD_Sum = 0;
+  50   1          while (i > 0)
+  51   1          {
+  52   2              AD_Sum = AD_Sum + Hx711();
+  53   2              i--;
+  54   2          }
+C51 COMPILER V9.01   AD                                                                    11/16/2020 22:49:56 PAGE 2   
 
-  55   2          }
-  56   1      
-  57   1          Offset = (unsigned long)(AD_Sum / 5);
-  58   1      }
-  59          
-  60          /********************************************************************
-  61          å‡½æ•°åç§°: unsigned float getWeight(void)
-  62          åŠŸèƒ½ç®€ä»‹: ADå€¼è½¬æ¢ä¸ºä»¥gä¸ºå•ä½çš„è´¨é‡
-  63          å…¥å£å‚æ•°: UINT_32 ADvalue
-  64          è¿”å›å€¼  ï¼šè½¬åŒ–åä»¥gä¸ºé‡çº²çš„è´¨é‡å€¼
-  65          *********************************************************************/
-  66          float getWeight(void)
-  67          {
-  68   1          unsigned long Dvalue = Hx711() - Offset; // å€¼ä¼šå°äº0
-  69   1          if (Dvalue < 0)
-  70   1          {
-  71   2              Dvalue = 0;
-  72   2          }
-  73   1          return (float)Dvalue / StandardValue * 4000;
-  74   1      }
+  55   1      
+  56   1          Offset = (unsigned long)(AD_Sum / 5);
+  57   1      }
+  58          
+  59          /********************************************************************
+  60          º¯ÊıÃû³Æ: unsigned float getWeight(void)
+  61          ¹¦ÄÜ¼ò½é: ADÖµ×ª»»ÎªÒÔgÎªµ¥Î»µÄÖÊÁ¿
+  62          Èë¿Ú²ÎÊı: UINT_32 ADvalue
+  63          ·µ»ØÖµ  £º×ª»¯ºóÒÔgÎªÁ¿¸ÙµÄÖÊÁ¿Öµ
+  64          *********************************************************************/
+  65          float getWeight(void)
+  66          {
+  67   1          unsigned long Dvalue = Hx711() - Offset; // Öµ»áĞ¡ÓÚ0
+  68   1          if (Dvalue < 0)
+  69   1          {
+  70   2              Dvalue = 0;
+  71   2          }
+  72   1          return (float)Dvalue / StandardValue * 4000;
+  73   1      }
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
