@@ -1,4 +1,4 @@
-C51 COMPILER V9.01   WEIGH                                                                 11/16/2020 22:49:56 PAGE 1   
+C51 COMPILER V9.01   WEIGH                                                                 11/20/2020 00:31:49 PAGE 1   
 
 
 C51 COMPILER V9.01, COMPILATION OF MODULE WEIGH
@@ -9,140 +9,142 @@ COMPILER INVOKED BY: D:\Program Files\keil\C51\BIN\C51.EXE src\weigh.c BROWSE DE
 line level    source
 
    1          #include "weigh.h"
-   2          
-   3          const unsigned char code title[] = {"硬币称重"};
-   4          const unsigned char code overWeight[] = {"超出量程"};
-   5          unsigned char WeightTab[6]; // 存质量字符串
-   6          unsigned char code clearTable[] = {"          "};                        // 清空
-   7          
-   8          unsigned char WeightString[8];
-   9          float perWeight;    // 单个硬币质量
-  10          float totalWeight;  // 总质量
-  11          unsigned long temp; // 缓存质量
-  12          unsigned char k = 0;
-  13          unsigned char t;
-  14          
-  15          
-  16          sbit wela = P2 ^ 6;
-  17          sbit dula = P2 ^ 7;
+   2          const unsigned char code Welcome[] = {"Welcome To Use!"};
+   3          const unsigned char title[] = {"By XZL & LLX"};
+   4          const unsigned char code PreWeight[] = {"Value:"};
+   5          const unsigned char digits[] = "0123456789";
+   6          const unsigned char code overWeight[] = {"超出量程"};
+   7          unsigned char WeightTab[9];                      // 存质量字符串
+   8          unsigned char code clearTable[] = {"         "}; // 清空
+   9          
+  10          unsigned long var;
+  11          const unsigned long varPian = 400;
+  12          const float OneYuan = 2900.0;
+  13          
+  14          unsigned char WeightString[8];
+  15          unsigned long temp; // 缓存质量
+  16          unsigned char k = 0;
+  17          unsigned long t; // 硬币个数
   18          
   19          void init(void);
   20          int loop(void);
-  21          void mitoa(int, char str[]);
-  22          
-  23          void mitoa(int num, char str[])
-  24          {
-  25   1          int sign;
-  26   1          unsigned char i = 0, j = 0;
-  27   1          unsigned char temp[10];
-  28   1          sign = num;
-  29   1          do
+  21          char *int2str(unsigned long);
+  22          void calYingbi(unsigned long);
+  23          unsigned long abs(long);
+  24          void getOffset();
+  25          
+  26          void main()
+  27          {
+  28   1          init();
+  29   1          while (1)
   30   1          {
-  31   2              temp[i] = sign % 10 + '0';
-  32   2              sign /= 10;
-  33   2              i++;
-  34   2          } while (sign > 0);
-  35   1          while (i > 0)
-  36   1          {
-  37   2              str[j] = temp[i - 1];
-  38   2              j++;
-  39   2              i--;
-  40   2          }
-  41   1          str[j] = '\0';
-  42   1      }
-  43          
-  44          void main()
-  45          {
-  46   1          init();
-  47   1          getOffset(10); // 初始化质量
-  48   1          while (!loop())
-  49   1              ;
-  50   1      }
-  51          
-  52          int loop(void)
-  53          {
-  54   1          temp = 0;
-C51 COMPILER V9.01   WEIGH                                                                 11/16/2020 22:49:56 PAGE 2   
+  31   2              loop();
+  32   2          }
+  33   1      }
+  34          
+  35          int loop(void)
+  36          {
+  37   1          temp = Hx711();
+  38   1          display(2, 0, clearTable);
+  39   1          calYingbi(temp);
+  40   1          display(2, 0, int2str(t));
+  41   1      
+  42   1          return 0;
+  43   1      }
+  44          
+  45          void init(void)
+  46          {
+  47   1          delay(10);
+  48   1          dis_init();
+  49   1          display(0, 0, Welcome);
+  50   1          display(1, 0, PreWeight);
+  51   1          display(3, 0, title);
+  52   1          getOffset();
+  53   1      }
+  54          
+C51 COMPILER V9.01   WEIGH                                                                 11/20/2020 00:31:49 PAGE 2   
 
-  55   1          temp = getWeight();
-  56   1          // if (temp >= 1000)
-  57   1          // {
-  58   1          //     display(0, 0, overWeight);
-  59   1          // }
-  60   1          if (temp == 0)
-  61   1          {
-  62   2              WeightTab[0] = '0';
-  63   2              k = 1;
-  64   2          }
-  65   1          else
-  66   1          {
-  67   2              init_WeiTag(WeightTab,clearTable);
-  68   2              k = 0;
-  69   2              while (temp != 0)
-  70   2              {
-  71   3                  WeightTab[k++] = 0x30 + temp % 10; //提取十进制最后一位转换为字符
-  72   3                  temp /= 10;
-  73   3              }
-  74   2          }
-  75   1          write_cmd(0x93);
-  76   1          while (k > 0)
-  77   1          {
-  78   2              write_data(WeightTab[k--]);
+  55          /** 调用 times 次 nop 函数*/
+  56          void Nop(unsigned char times)
+  57          {
+  58   1          int i = 0;
+  59   1          for (i = 0; i < times; i++)
+  60   1          {
+  61   2              _nop_();
+  62   2          }
+  63   1          return;
+  64   1      }
+  65          
+  66          /********************************************************************
+  67          函数名称: void delay(unsigned int x)    
+  68          功能简介: 晶振为11.0592MHZ时定时xms
+  69          入口参数: unsigned int x
+  70          返回值  ：无
+  71          *********************************************************************/
+  72          void delay(unsigned int x)
+  73          {
+  74   1          unsigned int i, j = 110;
+  75   1          for (i = 0; i < x; i++)
+  76   1          {
+  77   2              for (j = 0; j < 100; j++)
+  78   2                  ;
   79   2          }
-  80   1          return 0;
-  81   1      }
-  82          
-  83          void init(void)
-  84          {
-  85   1          dula = 1;
-  86   1          P0 = 0xff;
-  87   1          dula = 0;
-  88   1          wela = 1;
-  89   1          P0 = 0x00;
-  90   1          wela = 0;
-  91   1          delay(10);
-  92   1          // time_init();
-  93   1          dis_init();
-  94   1          display(0, 0, "Hello World");
-  95   1          display(2,0,title);
-  96   1      }
-  97          
-  98          /** 调用 times 次 nop 函数*/
-  99          void Nop(unsigned char times)
- 100          {
- 101   1          int i = 0;
- 102   1          for (i = 0; i < times; i++)
- 103   1          {
- 104   2              _nop_();
+  80   1      }
+  81          
+  82          char *int2str(unsigned long values)
+  83          {
+  84   1          char *crtn = WeightString;
+  85   1          crtn += 7;
+  86   1          *crtn = '\0';
+  87   1          do
+  88   1          {
+  89   2              *--crtn = digits[values % 10];
+  90   2          } while (values /= 10);
+  91   1          return crtn;
+  92   1      }
+  93          
+  94          void calYingbi(unsigned long temp)
+  95          {
+  96   1          if (abs(temp - var) < varPian)
+  97   1          {
+  98   2              t = 0;
+  99   2              return;
+ 100   2          }
+ 101   1          else
+ 102   1          {
+ 103   2              t = abs(temp - var) / OneYuan + 0.5;
+ 104   2              return;
  105   2          }
- 106   1          return;
- 107   1      }
- 108          
- 109          /********************************************************************
- 110          函数名称: void delay(unsigned int x)    
- 111          功能简介: 晶振为11.0592MHZ时定时xms
- 112          入口参数: unsigned int x
- 113          返回值  ：无
- 114          *********************************************************************/
- 115          void delay(unsigned int x)
+ 106   1      }
+ 107          
+ 108          unsigned long abs(long i)
+ 109          {
+ 110   1          if (i <= 0)
+ 111   1              return -i;
+ 112   1          return i;
+ 113   1      }
+ 114          
+ 115          void getOffset()
  116          {
-C51 COMPILER V9.01   WEIGH                                                                 11/16/2020 22:49:56 PAGE 3   
+C51 COMPILER V9.01   WEIGH                                                                 11/20/2020 00:31:49 PAGE 3   
 
- 117   1          unsigned int i, j = 110;
- 118   1          for (i = 0; i < x; i++)
- 119   1          {
- 120   2              for (j = 0; j < 100; j++)
- 121   2                  ;
+ 117   1          unsigned char i = 0;
+ 118   1          unsigned long OffsetSum = 0;
+ 119   1          for (i = 0; i < 5; i++)
+ 120   1          {
+ 121   2              OffsetSum += Hx711();
  122   2          }
- 123   1      }
+ 123   1          var = OffsetSum / 5;
+ 124   1          return;
+ 125   1      }
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    414    ----
-   CONSTANT SIZE    =     41    ----
+   CODE SIZE        =    510    ----
+   CONSTANT SIZE    =     42    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----
-   DATA SIZE        =     28      15
+   DATA SIZE        =     62      20
    IDATA SIZE       =   ----    ----
    BIT SIZE         =   ----    ----
 END OF MODULE INFORMATION.

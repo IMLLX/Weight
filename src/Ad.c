@@ -1,9 +1,9 @@
 #include "weigh.h"
 #include "Ad.h"
-#define StandardValue 1600000 // 质量基准值
+#define gapValue 4000
 
-sbit DOUT = P1^3;       // 串行输入数据端
-sbit PD_CLK = P1^4;     // 时钟信号端
+sbit DOUT = P1 ^ 2;       // 串行输入数据端
+sbit PD_CLK = P1 ^ 3;     // 时钟信号端
 unsigned long Offset = 0; // 零点偏移
 float Weight = 0;         // 质量
 float WeightTemp = 0.0;   // 质量中间变量
@@ -16,26 +16,24 @@ float WeightTemp = 0.0;   // 质量中间变量
 *********************************************************************/
 unsigned long Hx711(void)
 {
-    unsigned long AD_Value = 0;
-    unsigned char i = 0;
-    PD_CLK = 0;
-    while (DOUT);
+    unsigned long Count;
+    unsigned char i;
+    PD_CLK = 0;                 // 使能 AD （ PD_PD_CLK 置低）
+    Count = 0;
+    while (DOUT)
+        ;                       //AD 转换未结束则等待，否则开始读取
     for (i = 0; i < 24; i++)
     {
-        PD_CLK = 1;
-        Nop(3);
-        AD_Value = AD_Value << 1;
-        PD_CLK = 0;
+        PD_CLK = 1;             //PD_PD_CLK 置高（发送脉冲）
+        Count = Count << 1;     // 下降沿来时变量 Count 左移一位，右侧补零
+        PD_CLK = 0;             //PD_PD_CLK 置低
         if (DOUT)
-        {
-            AD_Value++;
-        }
+            Count++;
     }
     PD_CLK = 1;
-    AD_Value = AD_Value ^ 0x800000; // 输出补码
+    Count = Count ^ 0x800000; // 第 25 个脉冲下降沿来时，转换数据
     PD_CLK = 0;
-    Nop(3);
-    return AD_Value;
+    return (Count);
 }
 
 /********************************************************************
@@ -47,13 +45,14 @@ unsigned long Hx711(void)
 void getOffset(unsigned char i)
 {
     unsigned long AD_Sum = 0;
+    unsigned char t = i;
     while (i > 0)
     {
         AD_Sum = AD_Sum + Hx711();
         i--;
     }
 
-    Offset = (unsigned long)(AD_Sum / 5);
+    Offset = (unsigned long)(AD_Sum / t);
 }
 
 /********************************************************************
@@ -69,5 +68,5 @@ float getWeight(void)
     {
         Dvalue = 0;
     }
-    return (float)Dvalue / StandardValue * 4000;
+    return (float)Dvalue / gapValue;
 }

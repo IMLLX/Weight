@@ -12,7 +12,6 @@
 extern unsigned long Offset;
 extern float Weight;
 extern float WeightTemp; 
-extern unsigned char clearTab[];
 
 
 extern void delay(unsigned int );

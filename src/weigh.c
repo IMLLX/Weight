@@ -1,98 +1,55 @@
 #include "weigh.h"
-
-const unsigned char code title[] = {"硬币称重"};
+const unsigned char code Welcome[] = {"Welcome To Use!"};
+const unsigned char title[] = {"By XZL & LLX"};
+const unsigned char code PreWeight[] = {"Value:"};
+const unsigned char digits[] = "0123456789";
 const unsigned char code overWeight[] = {"超出量程"};
-unsigned char WeightTab[6]; // 存质量字符串
-unsigned char code clearTable[] = {"          "};			 // 清空
+unsigned char WeightTab[9];                      // 存质量字符串
+unsigned char code clearTable[] = {"         "}; // 清空
+
+unsigned long var;
+const unsigned long varPian = 400;
+const float OneYuan = 2900.0;
 
 unsigned char WeightString[8];
-float perWeight;    // 单个硬币质量
-float totalWeight;  // 总质量
 unsigned long temp; // 缓存质量
 unsigned char k = 0;
-unsigned char t;
-
-
-sbit wela = P2 ^ 6;
-sbit dula = P2 ^ 7;
+unsigned long t; // 硬币个数
 
 void init(void);
 int loop(void);
-void mitoa(int, char str[]);
-
-void mitoa(int num, char str[])
-{
-    int sign;
-    unsigned char i = 0, j = 0;
-    unsigned char temp[10];
-    sign = num;
-    do
-    {
-        temp[i] = sign % 10 + '0';
-        sign /= 10;
-        i++;
-    } while (sign > 0);
-    while (i > 0)
-    {
-        str[j] = temp[i - 1];
-        j++;
-        i--;
-    }
-    str[j] = '\0';
-}
+char *int2str(unsigned long);
+void calYingbi(unsigned long);
+unsigned long abs(long);
+void getOffset();
 
 void main()
 {
     init();
-    getOffset(10); // 初始化质量
-    while (!loop())
-        ;
+    while (1)
+    {
+        loop();
+    }
 }
 
 int loop(void)
 {
-    temp = 0;
-    temp = getWeight();
-    // if (temp >= 1000)
-    // {
-    //     display(0, 0, overWeight);
-    // }
-    if (temp == 0)
-    {
-        WeightTab[0] = '0';
-        k = 1;
-    }
-    else
-    {
-        init_WeiTag(WeightTab,clearTable);
-        k = 0;
-        while (temp != 0)
-        {
-            WeightTab[k++] = 0x30 + temp % 10; //提取十进制最后一位转换为字符
-            temp /= 10;
-        }
-    }
-    write_cmd(0x93);
-    while (k > 0)
-    {
-        write_data(WeightTab[k--]);
-    }
+    temp = Hx711();
+    display(2, 0, clearTable);
+    calYingbi(temp);
+    display(2, 0, int2str(t));
+
     return 0;
 }
 
 void init(void)
 {
-    dula = 1;
-    P0 = 0xff;
-    dula = 0;
-    wela = 1;
-    P0 = 0x00;
-    wela = 0;
     delay(10);
-    // time_init();
     dis_init();
-    display(0, 0, "Hello World");
-    display(2,0,title);
+    display(0, 0, Welcome);
+    display(1, 0, PreWeight);
+    display(3, 0, title);
+    getOffset();
 }
 
 /** 调用 times 次 nop 函数*/
@@ -120,4 +77,49 @@ void delay(unsigned int x)
         for (j = 0; j < 100; j++)
             ;
     }
+}
+
+char *int2str(unsigned long values)
+{
+    char *crtn = WeightString;
+    crtn += 7;
+    *crtn = '\0';
+    do
+    {
+        *--crtn = digits[values % 10];
+    } while (values /= 10);
+    return crtn;
+}
+
+void calYingbi(unsigned long temp)
+{
+    if (abs(temp - var) < varPian)
+    {
+        t = 0;
+        return;
+    }
+    else
+    {
+        t = abs(temp - var) / OneYuan + 0.5;
+        return;
+    }
+}
+
+unsigned long abs(long i)
+{
+    if (i <= 0)
+        return -i;
+    return i;
+}
+
+void getOffset()
+{
+    unsigned char i = 0;
+    unsigned long OffsetSum = 0;
+    for (i = 0; i < 5; i++)
+    {
+        OffsetSum += Hx711();
+    }
+    var = OffsetSum / 5;
+    return;
 }

@@ -206,8 +206,8 @@
       <Focus>0</Focus>
       <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>57</TopLine>
-      <CurrentLine>72</CurrentLine>
+      <TopLine>8</TopLine>
+      <CurrentLine>31</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\src\Ad.c</PathWithFileName>
       <FilenameWithoutPath>Ad.c</FilenameWithoutPath>
@@ -262,8 +262,8 @@
       <Focus>0</Focus>
       <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>79</TopLine>
-      <CurrentLine>79</CurrentLine>
+      <TopLine>1</TopLine>
+      <CurrentLine>21</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\src\weigh.c</PathWithFileName>
       <FilenameWithoutPath>weigh.c</FilenameWithoutPath>
@@ -1616,8 +1616,8 @@
         <Doc>
           <Name>.\src\weigh.c</Name>
           <ColumnNumber>0</ColumnNumber>
-          <TopLine>79</TopLine>
-          <CurrentLine>79</CurrentLine>
+          <TopLine>1</TopLine>
+          <CurrentLine>21</CurrentLine>
         </Doc>
         <Doc>
           <Name>.\src\init.c</Name>
@@ -1628,8 +1628,8 @@
         <Doc>
           <Name>.\src\Ad.c</Name>
           <ColumnNumber>0</ColumnNumber>
-          <TopLine>57</TopLine>
-          <CurrentLine>72</CurrentLine>
+          <TopLine>8</TopLine>
+          <CurrentLine>31</CurrentLine>
         </Doc>
         <Doc>
           <Name>.\src\display.c</Name>

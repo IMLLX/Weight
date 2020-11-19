@@ -1,0 +1,10 @@
+{
+    "files.associations": {
+        "*.tcc": "c",
+        "type_traits": "c",
+        "typeinfo": "c",
+        "cstdio": "c",
+        "cmath": "c",
+        "cstdlib": "c"
+    }
+}
