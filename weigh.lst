@@ -1,4 +1,4 @@
-C51 COMPILER V9.01   WEIGH                                                                 11/20/2020 00:31:49 PAGE 1   
+C51 COMPILER V9.01   WEIGH                                                                 11/20/2020 11:08:02 PAGE 1   
 
 
 C51 COMPILER V9.01, COMPILATION OF MODULE WEIGH
@@ -19,132 +19,153 @@ line level    source
    9          
   10          unsigned long var;
   11          const unsigned long varPian = 400;
-  12          const float OneYuan = 2900.0;
-  13          
-  14          unsigned char WeightString[8];
-  15          unsigned long temp; // 缓存质量
-  16          unsigned char k = 0;
-  17          unsigned long t; // 硬币个数
+  12          const unsigned long noise = 1000; // 允许噪声范围
+  13          const float OneYuan = 2900.0;
+  14          
+  15          unsigned char WeightString[8];
+  16          unsigned long temp;  // 缓存平均质量
+  17          unsigned short t = 0; // 硬币个数
   18          
   19          void init(void);
-  20          int loop(void);
+  20          void loop(void);
   21          char *int2str(unsigned long);
   22          void calYingbi(unsigned long);
   23          unsigned long abs(long);
   24          void getOffset();
-  25          
-  26          void main()
-  27          {
-  28   1          init();
-  29   1          while (1)
-  30   1          {
-  31   2              loop();
-  32   2          }
-  33   1      }
-  34          
-  35          int loop(void)
-  36          {
-  37   1          temp = Hx711();
-  38   1          display(2, 0, clearTable);
-  39   1          calYingbi(temp);
-  40   1          display(2, 0, int2str(t));
-  41   1      
-  42   1          return 0;
-  43   1      }
-  44          
-  45          void init(void)
-  46          {
-  47   1          delay(10);
-  48   1          dis_init();
-  49   1          display(0, 0, Welcome);
-  50   1          display(1, 0, PreWeight);
-  51   1          display(3, 0, title);
-  52   1          getOffset();
-  53   1      }
-  54          
-C51 COMPILER V9.01   WEIGH                                                                 11/20/2020 00:31:49 PAGE 2   
+  25          unsigned long averHx(int);
+  26          
+  27          void main()
+  28          {
+  29   1          init();
+  30   1          while (1)
+  31   1          {
+  32   2              loop();
+  33   2          }
+  34   1      }
+  35          
+  36          void loop(void)
+  37          {
+  38   1          unsigned short last = t;
+  39   1          pull();
+  40   1          push(Hx711());
+  41   1          temp = Hx711();
+  42   1          if (abs(temp - averQue()) > noise)
+  43   1          {
+  44   2              clearQue();
+  45   2              initQue();
+  46   2              return;
+  47   2          }
+  48   1      
+  49   1          calYingbi(temp);
+  50   1          if (last != t)
+  51   1          {
+  52   2              display(2, 0, clearTable);
+  53   2              display(2, 0, int2str(t));
+  54   2          }
+C51 COMPILER V9.01   WEIGH                                                                 11/20/2020 11:08:02 PAGE 2   
 
-  55          /** 调用 times 次 nop 函数*/
-  56          void Nop(unsigned char times)
-  57          {
-  58   1          int i = 0;
-  59   1          for (i = 0; i < times; i++)
-  60   1          {
-  61   2              _nop_();
-  62   2          }
-  63   1          return;
-  64   1      }
-  65          
-  66          /********************************************************************
-  67          函数名称: void delay(unsigned int x)    
-  68          功能简介: 晶振为11.0592MHZ时定时xms
-  69          入口参数: unsigned int x
-  70          返回值  ：无
-  71          *********************************************************************/
-  72          void delay(unsigned int x)
-  73          {
-  74   1          unsigned int i, j = 110;
-  75   1          for (i = 0; i < x; i++)
-  76   1          {
-  77   2              for (j = 0; j < 100; j++)
-  78   2                  ;
-  79   2          }
-  80   1      }
-  81          
-  82          char *int2str(unsigned long values)
-  83          {
-  84   1          char *crtn = WeightString;
-  85   1          crtn += 7;
-  86   1          *crtn = '\0';
-  87   1          do
-  88   1          {
-  89   2              *--crtn = digits[values % 10];
-  90   2          } while (values /= 10);
-  91   1          return crtn;
-  92   1      }
-  93          
-  94          void calYingbi(unsigned long temp)
-  95          {
-  96   1          if (abs(temp - var) < varPian)
-  97   1          {
-  98   2              t = 0;
-  99   2              return;
- 100   2          }
- 101   1          else
- 102   1          {
- 103   2              t = abs(temp - var) / OneYuan + 0.5;
- 104   2              return;
- 105   2          }
- 106   1      }
- 107          
- 108          unsigned long abs(long i)
- 109          {
- 110   1          if (i <= 0)
- 111   1              return -i;
- 112   1          return i;
- 113   1      }
- 114          
- 115          void getOffset()
- 116          {
-C51 COMPILER V9.01   WEIGH                                                                 11/20/2020 00:31:49 PAGE 3   
+  55   1          return;
+  56   1      }
+  57          
+  58          void init(void)
+  59          {
+  60   1          delay(10);
+  61   1          dis_init();
+  62   1          display(0, 0, Welcome);
+  63   1          display(1, 0, PreWeight);
+  64   1          getOffset();
+  65   1          initQue();
+  66   1          display(2, 0, int2str(t));
+  67   1          display(3, 0, title);
+  68   1      }
+  69          
+  70          /** 调用 times 次 nop 函数*/
+  71          void Nop(unsigned char times)
+  72          {
+  73   1          int i = 0;
+  74   1          for (i = 0; i < times; i++)
+  75   1          {
+  76   2              _nop_();
+  77   2          }
+  78   1          return;
+  79   1      }
+  80          
+  81          /********************************************************************
+  82          函数名称: void delay(unsigned int x)    
+  83          功能简介: 晶振为11.0592MHZ时定时xms
+  84          入口参数: unsigned int x
+  85          返回值  ：无
+  86          *********************************************************************/
+  87          void delay(unsigned int x)
+  88          {
+  89   1          unsigned int i, j = 110;
+  90   1          for (i = 0; i < x; i++)
+  91   1          {
+  92   2              for (j = 0; j < 100; j++)
+  93   2                  ;
+  94   2          }
+  95   1      }
+  96          
+  97          char *int2str(unsigned long values)
+  98          {
+  99   1          char *crtn = WeightString;
+ 100   1          crtn += 7;
+ 101   1          *crtn = '\0';
+ 102   1          do
+ 103   1          {
+ 104   2              *--crtn = digits[values % 10];
+ 105   2          } while (values /= 10);
+ 106   1          return crtn;
+ 107   1      }
+ 108          
+ 109          void calYingbi(unsigned long temp)
+ 110          {
+ 111   1          if (abs(temp - var) < varPian)
+ 112   1          {
+ 113   2              t = 0;
+ 114   2              return;
+ 115   2          }
+ 116   1          else
+C51 COMPILER V9.01   WEIGH                                                                 11/20/2020 11:08:02 PAGE 3   
 
- 117   1          unsigned char i = 0;
- 118   1          unsigned long OffsetSum = 0;
- 119   1          for (i = 0; i < 5; i++)
- 120   1          {
- 121   2              OffsetSum += Hx711();
- 122   2          }
- 123   1          var = OffsetSum / 5;
- 124   1          return;
- 125   1      }
+ 117   1          {
+ 118   2              t = abs(temp - var) / OneYuan + 0.5;
+ 119   2              return;
+ 120   2          }
+ 121   1      }
+ 122          
+ 123          unsigned long abs(long i)
+ 124          {
+ 125   1          if (i <= 0)
+ 126   1              return -i;
+ 127   1          return i;
+ 128   1      }
+ 129          
+ 130          void getOffset()
+ 131          {
+ 132   1          var = averHx(5);
+ 133   1          return;
+ 134   1      }
+ 135          
+ 136          unsigned long averHx(int times)
+ 137          {
+ 138   1          unsigned char i = 0;
+ 139   1          unsigned long average = 0;
+ 140   1          for (i = 0; i < times; i++)
+ 141   1          {
+ 142   2              average += Hx711();
+ 143   2          }
+ 144   1          average = average / times;
+ 145   1          return average;
+ 146   1      }
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    510    ----
+   CODE SIZE        =    635    ----
    CONSTANT SIZE    =     42    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----
-   DATA SIZE        =     62      20
+   DATA SIZE        =     63      24
    IDATA SIZE       =   ----    ----
    BIT SIZE         =   ----    ----
 END OF MODULE INFORMATION.

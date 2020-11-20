@@ -371,6 +371,11 @@
               <FileType>1</FileType>
               <FilePath>.\src\weigh.c</FilePath>
             </File>
+            <File>
+              <FileName>queue.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\queue.c</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>

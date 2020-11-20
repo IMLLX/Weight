@@ -1,4 +1,4 @@
-C51 COMPILER V9.01   AD                                                                    11/20/2020 00:31:48 PAGE 1   
+C51 COMPILER V9.01   AD                                                                    11/20/2020 10:53:23 PAGE 1   
 
 
 C51 COMPILER V9.01, COMPILATION OF MODULE AD
@@ -12,84 +12,41 @@ line level    source
    2          #include "Ad.h"
    3          #define gapValue 4000
    4          
-   5          sbit DOUT = P1 ^ 2;       // 串行输入数据端
-   6          sbit PD_CLK = P1 ^ 3;     // 时钟信号端
-   7          unsigned long Offset = 0; // 零点偏移
-   8          float Weight = 0;         // 质量
-   9          float WeightTemp = 0.0;   // 质量中间变量
+   5          sbit DOUT = P1 ^ 2;
+   6          sbit PD_CLK = P1 ^ 3;
+   7          unsigned long Offset = 0;
+   8          float Weight = 0;
+   9          float WeightTemp = 0.0;
   10          
-  11          /********************************************************************
-  12          函数名称: unsigned long AD_Hx711(void)
-  13          功能简介: AD采集
-  14          入口参数: 无
-  15          返回值  ：模拟电压经过AD转化后的数字量
-  16          *********************************************************************/
-  17          unsigned long Hx711(void)
-  18          {
-  19   1          unsigned long Count;
-  20   1          unsigned char i;
-  21   1          PD_CLK = 0;                 // 使能 AD （ PD_PD_CLK 置低）
-  22   1          Count = 0;
-  23   1          while (DOUT)
-  24   1              ;                       //AD 转换未结束则等待，否则开始读取
-  25   1          for (i = 0; i < 24; i++)
-  26   1          {
-  27   2              PD_CLK = 1;             //PD_PD_CLK 置高（发送脉冲）
-  28   2              Count = Count << 1;     // 下降沿来时变量 Count 左移一位，右侧补零
-  29   2              PD_CLK = 0;             //PD_PD_CLK 置低
-  30   2              if (DOUT)
-  31   2                  Count++;
-  32   2          }
-  33   1          PD_CLK = 1;
-  34   1          Count = Count ^ 0x800000; // 第 25 个脉冲下降沿来时，转换数据
-  35   1          PD_CLK = 0;
-  36   1          return (Count);
-  37   1      }
-  38          
-  39          /********************************************************************
-  40          函数名称: void AD_Offset(unsigned char i)               
-  41          功能简介: AD采集零点偏移平均值，也可当去皮使用
-  42          入口参数: 采集次数
-  43          返回值  ：无
-  44          *********************************************************************/
-  45          void getOffset(unsigned char i)
-  46          {
-  47   1          unsigned long AD_Sum = 0;
-  48   1          unsigned char t = i;
-  49   1          while (i > 0)
-  50   1          {
-  51   2              AD_Sum = AD_Sum + Hx711();
-  52   2              i--;
-  53   2          }
-  54   1      
-C51 COMPILER V9.01   AD                                                                    11/20/2020 00:31:48 PAGE 2   
-
-  55   1          Offset = (unsigned long)(AD_Sum / t);
-  56   1      }
-  57          
-  58          /********************************************************************
-  59          函数名称: unsigned float getWeight(void)
-  60          功能简介: AD值转换为以g为单位的质量
-  61          入口参数: UINT_32 ADvalue
-  62          返回值  ：转化后以g为量纲的质量值
-  63          *********************************************************************/
-  64          float getWeight(void)
-  65          {
-  66   1          unsigned long Dvalue = Hx711() - Offset; // 值会小于0
-  67   1          if (Dvalue < 0)
-  68   1          {
-  69   2              Dvalue = 0;
-  70   2          }
-  71   1          return (float)Dvalue / gapValue;
-  72   1      }
+  11          unsigned long Hx711(void)
+  12          {
+  13   1          unsigned long Count;
+  14   1          unsigned char i;
+  15   1          PD_CLK = 0;
+  16   1          Count = 0;
+  17   1          while (DOUT)
+  18   1              ;
+  19   1          for (i = 0; i < 24; i++)
+  20   1          {
+  21   2              PD_CLK = 1;
+  22   2              Count = Count << 1;
+  23   2              PD_CLK = 0;
+  24   2              if (DOUT)
+  25   2                  Count++;
+  26   2          }
+  27   1          PD_CLK = 1;
+  28   1          Count = Count ^ 0x800000;
+  29   1          PD_CLK = 0;
+  30   1          return (Count);
+  31   1      }
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    201    ----
+   CODE SIZE        =     53    ----
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----
-   DATA SIZE        =     12       8
+   DATA SIZE        =     12    ----
    IDATA SIZE       =   ----    ----
    BIT SIZE         =   ----    ----
 END OF MODULE INFORMATION.

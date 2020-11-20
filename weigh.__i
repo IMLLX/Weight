@@ -1,0 +1,1 @@
+"src\weigh.c" BROWSE DEBUG OBJECTEXTEND PRINT(.\weigh.lst) OBJECT(weigh.obj)

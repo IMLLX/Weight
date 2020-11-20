@@ -1,8 +1,9 @@
-BL51 BANKED LINKER/LOCATER V6.22                                                        11/20/2020  00:31:49  PAGE 1
+BL51 BANKED LINKER/LOCATER V6.22                                                        11/20/2020  11:08:02  PAGE 1
 
 
 BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
-D:\PROGRAM FILES\KEIL\C51\BIN\BL51.EXE Ad.obj, display.obj, init.obj, key.obj, weigh.obj TO weigh RAMSIZE (256)
+D:\PROGRAM FILES\KEIL\C51\BIN\BL51.EXE Ad.obj, display.obj, init.obj, key.obj, weigh.obj, queue.obj TO weigh RAMSIZE (25
+>> 6)
 
 
 MEMORY MODEL: SMALL WITH FLOATING POINT ARITHMETIC
@@ -14,6 +15,7 @@ INPUT MODULES INCLUDED:
   init.obj (INIT)
   key.obj (KEY)
   weigh.obj (WEIGH)
+  queue.obj (QUEUE)
   D:\PROGRAM FILES\KEIL\C51\LIB\C51FPS.LIB (?C?FPADD)
   D:\PROGRAM FILES\KEIL\C51\LIB\C51FPS.LIB (?C?FPDIV)
   D:\PROGRAM FILES\KEIL\C51\LIB\C51FPS.LIB (?C?FCAST)
@@ -27,6 +29,8 @@ INPUT MODULES INCLUDED:
   D:\PROGRAM FILES\KEIL\C51\LIB\C51S.LIB (?C?SLCMP)
   D:\PROGRAM FILES\KEIL\C51\LIB\C51S.LIB (?C?ULCMP)
   D:\PROGRAM FILES\KEIL\C51\LIB\C51S.LIB (?C?LSHL)
+  D:\PROGRAM FILES\KEIL\C51\LIB\C51S.LIB (?C?LLDIDATA)
+  D:\PROGRAM FILES\KEIL\C51\LIB\C51S.LIB (?C?LSTIDATA)
   D:\PROGRAM FILES\KEIL\C51\LIB\C51S.LIB (?C_INIT)
 
 
@@ -38,42 +42,42 @@ LINK MAP OF MODULE:  weigh (AD)
 
             * * * * * * *   D A T A   M E M O R Y   * * * * * * *
             REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
-            DATA    0008H     003EH     UNIT         ?DT?WEIGH
-            DATA    0046H     000CH     UNIT         ?DT?AD
-            DATA    0052H     0008H     UNIT         _DATA_GROUP_
-            DATA    005AH     0006H     UNIT         ?DT?_INIT_WEITAG?INIT
-            DATA    0060H     0004H     UNIT         ?DT?_GETOFFSET?AD
-            DATA    0064H     0004H     UNIT         ?DT?GETWEIGHT?AD
-            IDATA   0068H     0001H     UNIT         ?STACK
+            DATA    0008H     003FH     UNIT         ?DT?WEIGH
+            DATA    0047H     000DH     UNIT         ?DT?QUEUE
+            DATA    0054H     000CH     UNIT         ?DT?AD
+            DATA    0060H     000AH     UNIT         _DATA_GROUP_
+            IDATA   006AH     0001H     UNIT         ?STACK
 
             * * * * * * *   C O D E   M E M O R Y   * * * * * * *
             CODE    0000H     0003H     ABSOLUTE     
-            CODE    0003H     0398H     UNIT         ?C?LIB_CODE
-            CODE    039BH     008CH     UNIT         ?C_C51STARTUP
-            CODE    0427H     0074H     UNIT         ?PR?_INT2STR?WEIGH
-            CODE    049BH     0070H     UNIT         ?PR?_CALYINGBI?WEIGH
-            CODE    050BH     004DH     UNIT         ?PR?_DISPLAY?DISPLAY
-            CODE    0558H     004BH     UNIT         ?PR?GETWEIGHT?AD
-            CODE    05A3H     0049H     UNIT         ?PR?_GETOFFSET?AD
-            CODE    05ECH     0047H     UNIT         ?PR?GETOFFSET?WEIGH
-            CODE    0633H     003EH     UNIT         ?C_INITSEG
-            CODE    0671H     0039H     UNIT         ?PR?LOOP?WEIGH
-            CODE    06AAH     0037H     UNIT         ?PR?DIS_INIT?DISPLAY
-BL51 BANKED LINKER/LOCATER V6.22                                                      11/20/2020  00:31:49  PAGE 2
+            CODE    0003H     03B0H     UNIT         ?C?LIB_CODE
+            CODE    03B3H     008CH     UNIT         ?C_C51STARTUP
+            CODE    043FH     007CH     UNIT         ?PR?LOOP?WEIGH
+            CODE    04BBH     007BH     UNIT         ?PR?_INT2STR?WEIGH
+            CODE    0536H     0068H     UNIT         ?PR?_CALYINGBI?WEIGH
+            CODE    059EH     0065H     UNIT         ?PR?_AVERHX?WEIGH
+            CODE    0603H     004DH     UNIT         ?PR?_DISPLAY?DISPLAY
+            CODE    0650H     0048H     UNIT         ?C_INITSEG
+            CODE    0698H     0040H     UNIT         ?PR?INIT?WEIGH
+BL51 BANKED LINKER/LOCATER V6.22                                                      11/20/2020  11:08:02  PAGE 2
 
 
-            CODE    06E1H     0035H     UNIT         ?PR?HX711?AD
-            CODE    0716H     0033H     UNIT         ?PR?INIT?WEIGH
-            CODE    0749H     002AH     UNIT         ?CO?WEIGH
-            CODE    0773H     0029H     UNIT         ?PR?_INIT_WEITAG?INIT
-            CODE    079CH     0027H     UNIT         ?PR?_ABS?WEIGH
-            CODE    07C3H     0020H     UNIT         ?PR?_DELAY?WEIGH
-            CODE    07E3H     001BH     UNIT         ?PR?_WRITE_CMD?DISPLAY
-            CODE    07FEH     0018H     UNIT         ?PR?AWAIT_LCD?DISPLAY
-            CODE    0816H     0018H     UNIT         ?PR?_NOP?WEIGH
-            CODE    082EH     0017H     UNIT         ?PR?_WRITE_DATA?DISPLAY
-            CODE    0845H     0012H     UNIT         ?PR?TIME_INIT?INIT
-            CODE    0857H     0008H     UNIT         ?PR?MAIN?WEIGH
+            CODE    06D8H     003FH     UNIT         ?PR?AVERQUE?QUEUE
+            CODE    0717H     0037H     UNIT         ?PR?DIS_INIT?DISPLAY
+            CODE    074EH     0035H     UNIT         ?PR?HX711?AD
+            CODE    0783H     002AH     UNIT         ?CO?WEIGH
+            CODE    07ADH     0028H     UNIT         ?PR?PULL?QUEUE
+            CODE    07D5H     0027H     UNIT         ?PR?_ABS?WEIGH
+            CODE    07FCH     0020H     UNIT         ?PR?_DELAY?WEIGH
+            CODE    081CH     001CH     UNIT         ?PR?CLEARQUE?QUEUE
+            CODE    0838H     001BH     UNIT         ?PR?_WRITE_CMD?DISPLAY
+            CODE    0853H     0019H     UNIT         ?PR?INITQUE?QUEUE
+            CODE    086CH     0018H     UNIT         ?PR?AWAIT_LCD?DISPLAY
+            CODE    0884H     0018H     UNIT         ?PR?_NOP?WEIGH
+            CODE    089CH     0017H     UNIT         ?PR?_WRITE_DATA?DISPLAY
+            CODE    08B3H     0016H     UNIT         ?PR?_PUSH?QUEUE
+            CODE    08C9H     0010H     UNIT         ?PR?GETOFFSET?WEIGH
+            CODE    08D9H     0008H     UNIT         ?PR?MAIN?WEIGH
 
 
 
@@ -97,6 +101,8 @@ SEGMENT                           DATA_GROUP
   +--> ?CO?WEIGH
   +--> ?PR?_DISPLAY?DISPLAY
   +--> ?PR?GETOFFSET?WEIGH
+  +--> ?PR?INITQUE?QUEUE
+  +--> ?PR?_INT2STR?WEIGH
 
 ?PR?DIS_INIT?DISPLAY            -----    -----
   +--> ?PR?_NOP?WEIGH
@@ -106,32 +112,48 @@ SEGMENT                           DATA_GROUP
 ?PR?_WRITE_CMD?DISPLAY          -----    -----
   +--> ?PR?_DELAY?WEIGH
 
-?PR?_DISPLAY?DISPLAY            0052H    0004H
+?PR?_DISPLAY?DISPLAY            0062H    0004H
   +--> ?PR?_WRITE_CMD?DISPLAY
   +--> ?PR?_WRITE_DATA?DISPLAY
 
 ?PR?_WRITE_DATA?DISPLAY         -----    -----
   +--> ?PR?_NOP?WEIGH
 
-?PR?GETOFFSET?WEIGH             0052H    0005H
+BL51 BANKED LINKER/LOCATER V6.22                                                      11/20/2020  11:08:02  PAGE 3
+
+
+?PR?GETOFFSET?WEIGH             -----    -----
+  +--> ?PR?_AVERHX?WEIGH
+
+?PR?_AVERHX?WEIGH               0060H    0007H
   +--> ?PR?HX711?AD
 
-?PR?LOOP?WEIGH                  -----    -----
+?PR?INITQUE?QUEUE               0062H    0001H
+  +--> ?PR?CLEARQUE?QUEUE
   +--> ?PR?HX711?AD
-  +--> ?CO?WEIGH
-BL51 BANKED LINKER/LOCATER V6.22                                                      11/20/2020  00:31:49  PAGE 3
+  +--> ?PR?_PUSH?QUEUE
 
+?PR?_INT2STR?WEIGH              0062H    0007H
 
-  +--> ?PR?_DISPLAY?DISPLAY
+?PR?LOOP?WEIGH                  0060H    0002H
+  +--> ?PR?PULL?QUEUE
+  +--> ?PR?HX711?AD
+  +--> ?PR?_PUSH?QUEUE
+  +--> ?PR?AVERQUE?QUEUE
+  +--> ?PR?_ABS?WEIGH
+  +--> ?PR?CLEARQUE?QUEUE
+  +--> ?PR?INITQUE?QUEUE
   +--> ?PR?_CALYINGBI?WEIGH
+  +--> ?CO?WEIGH
+  +--> ?PR?_DISPLAY?DISPLAY
   +--> ?PR?_INT2STR?WEIGH
 
-?PR?_CALYINGBI?WEIGH            0052H    0004H
+?PR?AVERQUE?QUEUE               0062H    0004H
+
+?PR?_ABS?WEIGH                  0066H    0004H
+
+?PR?_CALYINGBI?WEIGH            0062H    0004H
   +--> ?PR?_ABS?WEIGH
-
-?PR?_ABS?WEIGH                  0056H    0004H
-
-?PR?_INT2STR?WEIGH              0052H    0007H
 
 
 
@@ -144,79 +166,45 @@ SYMBOL TABLE OF MODULE:  weigh (AD)
   C:0000H         SYMBOL        _ICE_DUMMY_
   D:0090H         PUBLIC        P1
   D:00B0H         PUBLIC        P3
-  D:0046H         PUBLIC        WeightTemp
+  D:0054H         PUBLIC        WeightTemp
   D:00A8H         PUBLIC        IE
   D:00B8H         PUBLIC        IP
-  C:05A3H         PUBLIC        _getOffset
-  C:0558H         PUBLIC        getWeight
   D:0098H         PUBLIC        SCON
   D:0088H         PUBLIC        TCON
   B:0090H.2       PUBLIC        DOUT
   B:0090H.3       PUBLIC        PD_CLK
-  C:06E1H         PUBLIC        Hx711
+  C:074EH         PUBLIC        Hx711
   D:00C8H         PUBLIC        T2CON
-  D:004AH         PUBLIC        Offset
-  D:004EH         PUBLIC        Weight
+  D:0058H         PUBLIC        Offset
+  D:005CH         PUBLIC        Weight
   D:00D0H         PUBLIC        PSW
   -------         PROC          HX711
+BL51 BANKED LINKER/LOCATER V6.22                                                      11/20/2020  11:08:02  PAGE 4
+
+
   -------         DO            
   D:0004H         SYMBOL        Count
   D:0003H         SYMBOL        i
   -------         ENDDO         
-  C:06E1H         LINE#         17
-  C:06E1H         LINE#         18
-  C:06E1H         LINE#         21
-  C:06E3H         LINE#         22
-  C:06EBH         LINE#         23
-  C:06EEH         LINE#         25
-  C:06F0H         LINE#         26
-  C:06F0H         LINE#         27
-  C:06F2H         LINE#         28
-  C:06F7H         LINE#         29
-  C:06F9H         LINE#         30
-  C:06FCH         LINE#         31
-  C:0709H         LINE#         32
-  C:070DH         LINE#         33
-  C:070FH         LINE#         34
-  C:0713H         LINE#         35
-BL51 BANKED LINKER/LOCATER V6.22                                                      11/20/2020  00:31:49  PAGE 4
-
-
-  C:0715H         LINE#         36
-  C:0715H         LINE#         37
+  C:074EH         LINE#         11
+  C:074EH         LINE#         12
+  C:074EH         LINE#         15
+  C:0750H         LINE#         16
+  C:0758H         LINE#         17
+  C:075BH         LINE#         19
+  C:075DH         LINE#         20
+  C:075DH         LINE#         21
+  C:075FH         LINE#         22
+  C:0764H         LINE#         23
+  C:0766H         LINE#         24
+  C:0769H         LINE#         25
+  C:0776H         LINE#         26
+  C:077AH         LINE#         27
+  C:077CH         LINE#         28
+  C:0780H         LINE#         29
+  C:0782H         LINE#         30
+  C:0782H         LINE#         31
   -------         ENDPROC       HX711
-  -------         PROC          _GETOFFSET
-  D:0002H         SYMBOL        i
-  -------         DO            
-  D:0060H         SYMBOL        AD_Sum
-  D:0001H         SYMBOL        t
-  -------         ENDDO         
-  C:05A3H         LINE#         45
-  C:05A5H         LINE#         46
-  C:05A5H         LINE#         47
-  C:05AEH         LINE#         48
-  C:05B0H         LINE#         49
-  C:05B6H         LINE#         50
-  C:05B6H         LINE#         51
-  C:05CDH         LINE#         52
-  C:05CEH         LINE#         53
-  C:05D0H         LINE#         55
-  C:05EBH         LINE#         56
-  -------         ENDPROC       _GETOFFSET
-  -------         PROC          GETWEIGHT
-  -------         DO            
-  D:0064H         SYMBOL        Dvalue
-  -------         ENDDO         
-  C:0558H         LINE#         64
-  C:0558H         LINE#         65
-  C:0558H         LINE#         66
-  C:0570H         LINE#         67
-  C:0583H         LINE#         68
-  C:0583H         LINE#         69
-  C:058CH         LINE#         70
-  C:058CH         LINE#         71
-  C:05A2H         LINE#         72
-  -------         ENDPROC       GETWEIGHT
   -------         ENDMOD        AD
 
   -------         MODULE        DISPLAY
@@ -227,107 +215,107 @@ SYMBOL TABLE OF MODULE:  weigh (AD)
   D:00A8H         PUBLIC        IE
   D:00B8H         PUBLIC        IP
   B:00B0H.7       PUBLIC        LCD_PSB
-  C:082EH         PUBLIC        _write_data
-  C:07FEH         PUBLIC        await_lcd
+  C:089CH         PUBLIC        _write_data
+  C:086CH         PUBLIC        await_lcd
   D:0098H         PUBLIC        SCON
   D:0088H         PUBLIC        TCON
-  C:07E3H         PUBLIC        _write_cmd
+  C:0838H         PUBLIC        _write_cmd
   B:00B0H.4       PUBLIC        LCD_EN
-  C:06AAH         PUBLIC        dis_init
+  C:0717H         PUBLIC        dis_init
   B:00B0H.5       PUBLIC        LCD_RS
   B:00B0H.6       PUBLIC        LCD_RW
   D:00C8H         PUBLIC        T2CON
-  C:050BH         PUBLIC        _display
+  C:0603H         PUBLIC        _display
   D:00D0H         PUBLIC        PSW
-BL51 BANKED LINKER/LOCATER V6.22                                                      11/20/2020  00:31:49  PAGE 5
-
-
   -------         PROC          AWAIT_LCD
-  C:07FEH         LINE#         18
-  C:07FEH         LINE#         19
-  C:07FEH         LINE#         20
-  C:0801H         LINE#         21
-  C:0803H         LINE#         22
-  C:0805H         LINE#         23
-  C:0807H         LINE#         24
-  C:080EH         LINE#         25
-  C:0813H         LINE#         29
-  C:0815H         LINE#         30
+  C:086CH         LINE#         18
+  C:086CH         LINE#         19
+  C:086CH         LINE#         20
+  C:086FH         LINE#         21
+  C:0871H         LINE#         22
+  C:0873H         LINE#         23
+  C:0875H         LINE#         24
+  C:087CH         LINE#         25
+  C:0881H         LINE#         29
+  C:0883H         LINE#         30
   -------         ENDPROC       AWAIT_LCD
+BL51 BANKED LINKER/LOCATER V6.22                                                      11/20/2020  11:08:02  PAGE 5
+
+
   -------         PROC          _WRITE_CMD
   D:0007H         SYMBOL        cmd
-  C:07E3H         LINE#         38
-  C:07E3H         LINE#         39
-  C:07E3H         LINE#         41
-  C:07E5H         LINE#         42
-  C:07E7H         LINE#         43
-  C:07E9H         LINE#         44
-  C:07EBH         LINE#         45
-  C:07F2H         LINE#         46
-  C:07F4H         LINE#         47
-  C:07FBH         LINE#         48
-  C:07FDH         LINE#         49
+  C:0838H         LINE#         38
+  C:0838H         LINE#         39
+  C:0838H         LINE#         41
+  C:083AH         LINE#         42
+  C:083CH         LINE#         43
+  C:083EH         LINE#         44
+  C:0840H         LINE#         45
+  C:0847H         LINE#         46
+  C:0849H         LINE#         47
+  C:0850H         LINE#         48
+  C:0852H         LINE#         49
   -------         ENDPROC       _WRITE_CMD
   -------         PROC          _WRITE_DATA
   D:0007H         SYMBOL        dat
-  C:082EH         LINE#         57
-  C:082EH         LINE#         58
-  C:082EH         LINE#         60
-  C:0830H         LINE#         61
-  C:0832H         LINE#         62
-  C:0834H         LINE#         63
-  C:0836H         LINE#         64
-  C:083BH         LINE#         65
-  C:083DH         LINE#         66
-  C:0842H         LINE#         67
-  C:0844H         LINE#         68
+  C:089CH         LINE#         57
+  C:089CH         LINE#         58
+  C:089CH         LINE#         60
+  C:089EH         LINE#         61
+  C:08A0H         LINE#         62
+  C:08A2H         LINE#         63
+  C:08A4H         LINE#         64
+  C:08A9H         LINE#         65
+  C:08ABH         LINE#         66
+  C:08B0H         LINE#         67
+  C:08B2H         LINE#         68
   -------         ENDPROC       _WRITE_DATA
   -------         PROC          DIS_INIT
-  C:06AAH         LINE#         76
-  C:06AAH         LINE#         77
-  C:06AAH         LINE#         78
-  C:06AFH         LINE#         79
-  C:06B1H         LINE#         80
-  C:06B6H         LINE#         81
-  C:06BDH         LINE#         82
-  C:06C2H         LINE#         83
-  C:06C9H         LINE#         84
-  C:06CEH         LINE#         85
-  C:06D5H         LINE#         86
-  C:06DAH         LINE#         87
+  C:0717H         LINE#         76
+  C:0717H         LINE#         77
+  C:0717H         LINE#         78
+  C:071CH         LINE#         79
+  C:071EH         LINE#         80
+  C:0723H         LINE#         81
+  C:072AH         LINE#         82
+  C:072FH         LINE#         83
+  C:0736H         LINE#         84
+  C:073BH         LINE#         85
+  C:0742H         LINE#         86
+  C:0747H         LINE#         87
   -------         ENDPROC       DIS_INIT
   -------         PROC          _DISPLAY
   D:0007H         SYMBOL        x
-  D:0052H         SYMBOL        y
-BL51 BANKED LINKER/LOCATER V6.22                                                      11/20/2020  00:31:49  PAGE 6
+  D:0062H         SYMBOL        y
+  D:0063H         SYMBOL        string
+  C:0603H         LINE#         96
+  C:060BH         LINE#         97
+  C:060BH         LINE#         98
+  C:0619H         LINE#         99
+  C:0619H         LINE#         100
+  C:0619H         LINE#         101
+  C:061DH         LINE#         102
+  C:061FH         LINE#         103
+  C:061FH         LINE#         104
+  C:0623H         LINE#         105
+  C:0625H         LINE#         106
+BL51 BANKED LINKER/LOCATER V6.22                                                      11/20/2020  11:08:02  PAGE 6
 
 
-  D:0053H         SYMBOL        string
-  C:050BH         LINE#         96
-  C:0513H         LINE#         97
-  C:0513H         LINE#         98
-  C:0521H         LINE#         99
-  C:0521H         LINE#         100
-  C:0521H         LINE#         101
-  C:0525H         LINE#         102
-  C:0527H         LINE#         103
-  C:0527H         LINE#         104
-  C:052BH         LINE#         105
-  C:052DH         LINE#         106
-  C:052DH         LINE#         107
-  C:0531H         LINE#         108
-  C:0533H         LINE#         109
-  C:0533H         LINE#         110
-  C:053BH         LINE#         111
-  C:053BH         LINE#         112
-  C:053BH         LINE#         113
-  C:053BH         LINE#         114
-  C:053BH         LINE#         115
-  C:0547H         LINE#         116
-  C:0547H         LINE#         117
-  C:054AH         LINE#         118
-  C:0555H         LINE#         119
-  C:0557H         LINE#         120
+  C:0625H         LINE#         107
+  C:0629H         LINE#         108
+  C:062BH         LINE#         109
+  C:062BH         LINE#         110
+  C:0633H         LINE#         111
+  C:0633H         LINE#         112
+  C:0633H         LINE#         113
+  C:0633H         LINE#         114
+  C:0633H         LINE#         115
+  C:063FH         LINE#         116
+  C:063FH         LINE#         117
+  C:0642H         LINE#         118
+  C:064DH         LINE#         119
+  C:064FH         LINE#         120
   -------         ENDPROC       _DISPLAY
   -------         ENDMOD        DISPLAY
 
@@ -335,50 +323,12 @@ SYMBOL TABLE OF MODULE:  weigh (AD)
   C:0000H         SYMBOL        _ICE_DUMMY_
   D:0090H         PUBLIC        P1
   D:00B0H         PUBLIC        P3
-  B:00A8H.7       PUBLIC        EA
   D:00A8H         PUBLIC        IE
   D:00B8H         PUBLIC        IP
   D:0098H         PUBLIC        SCON
-  D:0089H         PUBLIC        TMOD
   D:0088H         PUBLIC        TCON
-  C:0845H         PUBLIC        time_init
-  B:00A8H.1       PUBLIC        ET0
-  B:00A8H.3       PUBLIC        ET1
-  D:008CH         PUBLIC        TH0
-  D:008AH         PUBLIC        TL0
-  B:0088H.4       PUBLIC        TR0
-  C:0773H         PUBLIC        _init_WeiTag
   D:00C8H         PUBLIC        T2CON
   D:00D0H         PUBLIC        PSW
-  -------         PROC          TIME_INIT
-  C:0845H         LINE#         4
-  C:0845H         LINE#         5
-  C:0845H         LINE#         6
-  C:0848H         LINE#         7
-  C:084BH         LINE#         8
-  C:084EH         LINE#         9
-  C:0850H         LINE#         10
-  C:0852H         LINE#         11
-BL51 BANKED LINKER/LOCATER V6.22                                                      11/20/2020  00:31:49  PAGE 7
-
-
-  C:0854H         LINE#         12
-  C:0856H         LINE#         13
-  -------         ENDPROC       TIME_INIT
-  -------         PROC          _INIT_WEITAG
-  D:005AH         SYMBOL        str1
-  D:005DH         SYMBOL        str2
-  -------         DO            
-  D:0007H         SYMBOL        i
-  -------         ENDDO         
-  C:0773H         LINE#         23
-  C:0779H         LINE#         24
-  C:0779H         LINE#         26
-  C:077BH         LINE#         27
-  C:077BH         LINE#         28
-  C:0797H         LINE#         29
-  C:079BH         LINE#         30
-  -------         ENDPROC       _INIT_WEITAG
   -------         ENDMOD        INIT
 
   -------         MODULE        KEY
@@ -392,77 +342,96 @@ SYMBOL TABLE OF MODULE:  weigh (AD)
   D:0008H         PUBLIC        WeightTab
   D:0011H         PUBLIC        digits
   D:00A8H         PUBLIC        IE
-  C:07C3H         PUBLIC        _delay
-  C:0759H         PUBLIC        PreWeight
-  C:049BH         PUBLIC        _calYingbi
+  C:07FCH         PUBLIC        _delay
+  C:0793H         PUBLIC        PreWeight
+  C:0536H         PUBLIC        _calYingbi
   D:00B8H         PUBLIC        IP
-  D:001CH         PUBLIC        title
-  C:0857H         PUBLIC        main
-  C:0760H         PUBLIC        overWeight
-  C:05ECH         PUBLIC        getOffset
-  C:0816H         PUBLIC        _Nop
+  D:001CH         PUBLIC        noise
+  D:0020H         PUBLIC        title
+  C:08D9H         PUBLIC        main
+  C:079AH         PUBLIC        overWeight
+  C:08C9H         PUBLIC        getOffset
+  C:0884H         PUBLIC        _Nop
   D:0098H         PUBLIC        SCON
   D:0088H         PUBLIC        TCON
-  C:0716H         PUBLIC        init
-  C:079CH         PUBLIC        _abs
-  D:0029H         PUBLIC        temp
-  C:0671H         PUBLIC        loop
-  D:002DH         PUBLIC        OneYuan
-  D:0031H         PUBLIC        var
-  C:0749H         PUBLIC        Welcome
-  D:0035H         PUBLIC        varPian
-  C:0427H         PUBLIC        _int2str
-  D:0039H         PUBLIC        WeightString
+  C:0698H         PUBLIC        init
+  C:07D5H         PUBLIC        _abs
+  D:002DH         PUBLIC        temp
+  C:043FH         PUBLIC        loop
+  D:0031H         PUBLIC        OneYuan
+BL51 BANKED LINKER/LOCATER V6.22                                                      11/20/2020  11:08:02  PAGE 7
+
+
+  D:0035H         PUBLIC        var
+  C:0783H         PUBLIC        Welcome
+  D:0039H         PUBLIC        varPian
+  C:04C2H         PUBLIC        _int2str
+  D:003DH         PUBLIC        WeightString
   D:00C8H         PUBLIC        T2CON
-  D:0041H         PUBLIC        k
-  D:0042H         PUBLIC        t
-  C:0769H         PUBLIC        clearTable
+  C:059EH         PUBLIC        _averHx
+  D:0045H         PUBLIC        t
+  C:07A3H         PUBLIC        clearTable
   D:00D0H         PUBLIC        PSW
   -------         PROC          MAIN
-BL51 BANKED LINKER/LOCATER V6.22                                                      11/20/2020  00:31:49  PAGE 8
-
-
-  C:0857H         LINE#         26
-  C:0857H         LINE#         27
-  C:0857H         LINE#         28
-  C:085AH         LINE#         29
-  C:085AH         LINE#         30
-  C:085AH         LINE#         31
-  C:085DH         LINE#         32
+  C:08D9H         LINE#         27
+  C:08D9H         LINE#         28
+  C:08D9H         LINE#         29
+  C:08DCH         LINE#         30
+  C:08DCH         LINE#         31
+  C:08DCH         LINE#         32
+  C:08DFH         LINE#         33
   -------         ENDPROC       MAIN
   -------         PROC          LOOP
-  C:0671H         LINE#         35
-  C:0671H         LINE#         36
-  C:0671H         LINE#         37
-  C:067CH         LINE#         38
-  C:0689H         LINE#         39
-  C:0694H         LINE#         40
-  C:06A6H         LINE#         42
-  C:06A9H         LINE#         43
+  -------         DO            
+  D:0060H         SYMBOL        last
+  -------         ENDDO         
+  C:043FH         LINE#         36
+  C:043FH         LINE#         37
+  C:043FH         LINE#         38
+  C:0445H         LINE#         39
+  C:0448H         LINE#         40
+  C:044EH         LINE#         41
+  C:0459H         LINE#         42
+  C:0486H         LINE#         43
+  C:0486H         LINE#         44
+  C:0489H         LINE#         45
+  C:048CH         LINE#         47
+  C:048CH         LINE#         49
+  C:0497H         LINE#         50
+  C:04A3H         LINE#         51
+  C:04A3H         LINE#         52
+  C:04B0H         LINE#         53
+  C:04BAH         LINE#         54
+  C:04BAH         LINE#         56
   -------         ENDPROC       LOOP
   -------         PROC          INIT
-  C:0716H         LINE#         45
-  C:0716H         LINE#         46
-  C:0716H         LINE#         47
-  C:071DH         LINE#         48
-  C:0720H         LINE#         49
-  C:072CH         LINE#         50
-  C:0739H         LINE#         51
-  C:0746H         LINE#         52
+  C:0698H         LINE#         58
+  C:0698H         LINE#         59
+  C:0698H         LINE#         60
+  C:069FH         LINE#         61
+  C:06A2H         LINE#         62
+  C:06AEH         LINE#         63
+  C:06BBH         LINE#         64
+  C:06BEH         LINE#         65
+  C:06C1H         LINE#         66
+  C:06CBH         LINE#         67
   -------         ENDPROC       INIT
   -------         PROC          _NOP
   D:0007H         SYMBOL        times
   -------         DO            
+BL51 BANKED LINKER/LOCATER V6.22                                                      11/20/2020  11:08:02  PAGE 8
+
+
   D:0004H         SYMBOL        i
   -------         ENDDO         
-  C:0816H         LINE#         56
-  C:0816H         LINE#         57
-  C:0816H         LINE#         58
-  C:0819H         LINE#         59
-  C:0825H         LINE#         60
-  C:0825H         LINE#         61
-  C:0826H         LINE#         62
-  C:082DH         LINE#         64
+  C:0884H         LINE#         71
+  C:0884H         LINE#         72
+  C:0884H         LINE#         73
+  C:0887H         LINE#         74
+  C:0893H         LINE#         75
+  C:0893H         LINE#         76
+  C:0894H         LINE#         77
+  C:089BH         LINE#         79
   -------         ENDPROC       _NOP
   -------         PROC          _DELAY
   D:0006H         SYMBOL        x
@@ -470,80 +439,169 @@ SYMBOL TABLE OF MODULE:  weigh (AD)
   D:0002H         SYMBOL        i
   D:0004H         SYMBOL        j
   -------         ENDDO         
-  C:07C3H         LINE#         72
-  C:07C3H         LINE#         73
-  C:07C3H         LINE#         74
-  C:07C3H         LINE#         75
-  C:07CDH         LINE#         76
-  C:07CDH         LINE#         77
-  C:07DBH         LINE#         79
-  C:07E2H         LINE#         80
+  C:07FCH         LINE#         87
+  C:07FCH         LINE#         88
+  C:07FCH         LINE#         89
+  C:07FCH         LINE#         90
+  C:0806H         LINE#         91
+  C:0806H         LINE#         92
+  C:0814H         LINE#         94
+  C:081BH         LINE#         95
   -------         ENDPROC       _DELAY
-BL51 BANKED LINKER/LOCATER V6.22                                                      11/20/2020  00:31:49  PAGE 9
-
-
+  -------         PROC          L?0038
+  -------         ENDPROC       L?0038
   -------         PROC          _INT2STR
-  D:0052H         SYMBOL        values
+  D:0062H         SYMBOL        values
   -------         DO            
-  D:0056H         SYMBOL        crtn
+  D:0066H         SYMBOL        crtn
   -------         ENDDO         
-  C:0427H         LINE#         82
-  C:042FH         LINE#         83
-  C:042FH         LINE#         84
-  C:0438H         LINE#         85
-  C:0443H         LINE#         86
-  C:044CH         LINE#         88
-  C:044CH         LINE#         89
-  C:0475H         LINE#         90
-  C:0494H         LINE#         91
-  C:049AH         LINE#         92
+  C:04C2H         LINE#         97
+  C:04CAH         LINE#         98
+  C:04CAH         LINE#         99
+  C:04D3H         LINE#         100
+  C:04DEH         LINE#         101
+  C:04E7H         LINE#         103
+  C:04E7H         LINE#         104
+  C:0510H         LINE#         105
+  C:052FH         LINE#         106
+  C:0535H         LINE#         107
   -------         ENDPROC       _INT2STR
   -------         PROC          _CALYINGBI
-  D:0052H         SYMBOL        temp
-  C:049BH         LINE#         94
-  C:04A3H         LINE#         95
-  C:04A3H         LINE#         96
-  C:04C5H         LINE#         97
-  C:04C5H         LINE#         98
-  C:04CFH         LINE#         100
-  C:04CFH         LINE#         102
-  C:04CFH         LINE#         103
-  C:050AH         LINE#         105
-  C:050AH         LINE#         106
+  D:0062H         SYMBOL        temp
+  C:0536H         LINE#         109
+  C:053EH         LINE#         110
+  C:053EH         LINE#         111
+  C:0560H         LINE#         112
+  C:0560H         LINE#         113
+  C:0566H         LINE#         115
+  C:0566H         LINE#         117
+  C:0566H         LINE#         118
+  C:059DH         LINE#         120
+  C:059DH         LINE#         121
   -------         ENDPROC       _CALYINGBI
+BL51 BANKED LINKER/LOCATER V6.22                                                      11/20/2020  11:08:02  PAGE 9
+
+
   -------         PROC          _ABS
-  D:0056H         SYMBOL        i
-  C:079CH         LINE#         108
-  C:07A4H         LINE#         109
-  C:07A4H         LINE#         110
-  C:07BFH         LINE#         111
-  C:07C2H         LINE#         112
-  C:07C2H         LINE#         113
+  D:0066H         SYMBOL        i
+  C:07D5H         LINE#         123
+  C:07DDH         LINE#         124
+  C:07DDH         LINE#         125
+  C:07F8H         LINE#         126
+  C:07FBH         LINE#         127
+  C:07FBH         LINE#         128
   -------         ENDPROC       _ABS
   -------         PROC          GETOFFSET
-  -------         DO            
-  D:0052H         SYMBOL        i
-  D:0053H         SYMBOL        OffsetSum
-  -------         ENDDO         
-  C:05ECH         LINE#         115
-  C:05ECH         LINE#         116
-  C:05ECH         LINE#         117
-  C:05EFH         LINE#         118
-  C:05F7H         LINE#         119
-  C:05F9H         LINE#         120
-  C:05F9H         LINE#         121
-  C:0610H         LINE#         122
-  C:0619H         LINE#         123
-  C:0632H         LINE#         125
+  C:08C9H         LINE#         130
+  C:08C9H         LINE#         131
+  C:08C9H         LINE#         132
+  C:08D8H         LINE#         134
   -------         ENDPROC       GETOFFSET
+  -------         PROC          _AVERHX
+  D:0060H         SYMBOL        times
+  -------         DO            
+  D:0062H         SYMBOL        i
+  D:0063H         SYMBOL        average
+  -------         ENDDO         
+  C:059EH         LINE#         136
+  C:05A2H         LINE#         137
+  C:05A2H         LINE#         138
+  C:05A5H         LINE#         139
+  C:05ADH         LINE#         140
+  C:05BEH         LINE#         141
+  C:05BEH         LINE#         142
+  C:05D5H         LINE#         143
+  C:05D9H         LINE#         144
+  C:0602H         LINE#         145
+  C:0602H         LINE#         146
+  -------         ENDPROC       _AVERHX
   -------         ENDMOD        WEIGH
 
+  -------         MODULE        QUEUE
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0090H         PUBLIC        P1
+  D:00B0H         PUBLIC        P3
+  D:00A8H         PUBLIC        IE
+  D:00B8H         PUBLIC        IP
+  D:0047H         PUBLIC        queue
+  D:0098H         PUBLIC        SCON
+  D:0088H         PUBLIC        TCON
+  C:081CH         PUBLIC        clearQue
+  D:0053H         PUBLIC        curr
+  C:07ADH         PUBLIC        pull
+  C:08B3H         PUBLIC        _push
+  C:06D8H         PUBLIC        averQue
+  C:0853H         PUBLIC        initQue
+  D:00C8H         PUBLIC        T2CON
+  D:00D0H         PUBLIC        PSW
+  -------         PROC          _PUSH
+  D:0004H         SYMBOL        val
+  C:08B3H         LINE#         6
+  C:08B3H         LINE#         7
+  C:08B3H         LINE#         8
+BL51 BANKED LINKER/LOCATER V6.22                                                      11/20/2020  11:08:02  PAGE 10
+
+
+  C:08BAH         LINE#         10
+  C:08C8H         LINE#         12
+  -------         ENDPROC       _PUSH
+  -------         PROC          PULL
+  C:07ADH         LINE#         14
+  C:07ADH         LINE#         15
+  C:07ADH         LINE#         16
+  C:07B1H         LINE#         18
+  C:07BDH         LINE#         19
+  C:07C9H         LINE#         20
+  C:07D2H         LINE#         21
+  C:07D4H         LINE#         23
+  -------         ENDPROC       PULL
+  -------         PROC          AVERQUE
+  -------         DO            
+  D:0003H         SYMBOL        i
+  D:0062H         SYMBOL        sum
+  -------         ENDDO         
+  C:06D8H         LINE#         25
+  C:06D8H         LINE#         26
+  C:06D8H         LINE#         27
+  C:06DAH         LINE#         28
+  C:06E2H         LINE#         29
+  C:06E2H         LINE#         30
+  C:06E2H         LINE#         31
+  C:0701H         LINE#         32
+  C:0705H         LINE#         33
+  C:0716H         LINE#         34
+  -------         ENDPROC       AVERQUE
+  -------         PROC          INITQUE
+  -------         DO            
+  D:0062H         SYMBOL        i
+  -------         ENDDO         
+  C:0853H         LINE#         36
+  C:0853H         LINE#         37
+  C:0853H         LINE#         39
+  C:0856H         LINE#         40
+  C:0859H         LINE#         41
+  C:0859H         LINE#         42
+  C:085FH         LINE#         43
+  C:0868H         LINE#         44
+  C:086BH         LINE#         46
+  -------         ENDPROC       INITQUE
+  -------         PROC          CLEARQUE
+  C:081CH         LINE#         48
+  C:081CH         LINE#         49
+  C:081CH         LINE#         50
+  C:0825H         LINE#         51
+  C:082DH         LINE#         52
+  C:0835H         LINE#         53
+  C:0837H         LINE#         55
+  -------         ENDPROC       CLEARQUE
+  -------         ENDMOD        QUEUE
+
   -------         MODULE        ?C?FPADD
-BL51 BANKED LINKER/LOCATER V6.22                                                      11/20/2020  00:31:49  PAGE 10
-
-
   C:000AH         PUBLIC        ?C?FPADD
   C:0006H         PUBLIC        ?C?FPSUB
+BL51 BANKED LINKER/LOCATER V6.22                                                      11/20/2020  11:08:02  PAGE 11
+
+
   -------         ENDMOD        ?C?FPADD
 
   -------         MODULE        ?C?FPDIV
@@ -588,23 +646,16 @@ SYMBOL TABLE OF MODULE:  weigh (AD)
   C:0388H         PUBLIC        ?C?LSHL
   -------         ENDMOD        ?C?LSHL
 
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GETOFFSET?AD
+  -------         MODULE        ?C?LLDIDATA
+  C:039BH         PUBLIC        ?C?LLDIDATA
+  -------         ENDMOD        ?C?LLDIDATA
 
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GETWEIGHT?AD
+  -------         MODULE        ?C?LSTIDATA
+  C:03A7H         PUBLIC        ?C?LSTIDATA
+  -------         ENDMOD        ?C?LSTIDATA
 
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
     SEGMENT: ?PR?AWAIT_LCD?DISPLAY
 
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?TIME_INIT?INIT
-BL51 BANKED LINKER/LOCATER V6.22                                                      11/20/2020  00:31:49  PAGE 11
-
-
-
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_INIT_WEITAG?INIT
-
-Program Size: data=105.0 xdata=0 code=2143
-LINK/LOCATE RUN COMPLETE.  5 WARNING(S),  0 ERROR(S)
+Program Size: data=107.0 xdata=0 code=2273
+LINK/LOCATE RUN COMPLETE.  1 WARNING(S),  0 ERROR(S)

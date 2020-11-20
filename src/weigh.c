@@ -9,19 +9,20 @@ unsigned char code clearTable[] = {"         "}; // 清空
 
 unsigned long var;
 const unsigned long varPian = 400;
+const unsigned long noise = 1000; // 允许噪声范围
 const float OneYuan = 2900.0;
 
 unsigned char WeightString[8];
-unsigned long temp; // 缓存质量
-unsigned char k = 0;
-unsigned long t; // 硬币个数
+unsigned long temp;  // 缓存平均质量
+unsigned short t = 0; // 硬币个数
 
 void init(void);
-int loop(void);
+void loop(void);
 char *int2str(unsigned long);
 void calYingbi(unsigned long);
 unsigned long abs(long);
 void getOffset();
+unsigned long averHx(int);
 
 void main()
 {
@@ -32,14 +33,26 @@ void main()
     }
 }
 
-int loop(void)
+void loop(void)
 {
+    unsigned short last = t;
+    pull();
+    push(Hx711());
     temp = Hx711();
-    display(2, 0, clearTable);
-    calYingbi(temp);
-    display(2, 0, int2str(t));
+    if (abs(temp - averQue()) > noise)
+    {
+        clearQue();
+        initQue();
+        return;
+    }
 
-    return 0;
+    calYingbi(temp);
+    if (last != t)
+    {
+        display(2, 0, clearTable);
+        display(2, 0, int2str(t));
+    }
+    return;
 }
 
 void init(void)
@@ -48,8 +61,10 @@ void init(void)
     dis_init();
     display(0, 0, Welcome);
     display(1, 0, PreWeight);
-    display(3, 0, title);
     getOffset();
+    initQue();
+    display(2, 0, int2str(t));
+    display(3, 0, title);
 }
 
 /** 调用 times 次 nop 函数*/
@@ -114,12 +129,18 @@ unsigned long abs(long i)
 
 void getOffset()
 {
-    unsigned char i = 0;
-    unsigned long OffsetSum = 0;
-    for (i = 0; i < 5; i++)
-    {
-        OffsetSum += Hx711();
-    }
-    var = OffsetSum / 5;
+    var = averHx(5);
     return;
+}
+
+unsigned long averHx(int times)
+{
+    unsigned char i = 0;
+    unsigned long average = 0;
+    for (i = 0; i < times; i++)
+    {
+        average += Hx711();
+    }
+    average = average / times;
+    return average;
 }
