@@ -1,0 +1,8 @@
+*.lst
+*.obj
+*.__i
+*.bak
+*.lnp
+*.M51
+*.uvopt
+*.plg
