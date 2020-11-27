@@ -7,8 +7,6 @@ sbit LCD_EN = P3 ^ 4;  // 使能端
 sbit LCD_PSB = P3 ^ 7; // 并行输入
 sbit busy = P0 ^ 7;    // 忙端口
 
-
-
 /********************************************************************
 函数名称: void Check_Busy()		
 功能简介: 读检测12864液晶内部工作状态
@@ -37,7 +35,7 @@ void await_lcd()
 *********************************************************************/
 void write_cmd(unsigned char cmd)
 {
-    // await_lcd();
+    await_lcd();
     LCD_RS = 0;
     LCD_RW = 0;
     LCD_EN = 0;
@@ -56,7 +54,6 @@ void write_cmd(unsigned char cmd)
 *********************************************************************/
 void write_data(unsigned char dat)
 {
-    // await_lcd();
     LCD_RS = 1;
     LCD_RW = 0;
     LCD_EN = 0;
@@ -76,15 +73,11 @@ void write_data(unsigned char dat)
 void dis_init()
 {
     Nop(3);
-    LCD_PSB = 1;        // 串行
-    write_cmd(0x30);    // 8为并行，指令为基本指令
-    delay(5);
+    LCD_PSB = 1;     // 串行
+    write_cmd(0x30); // 8为并行，指令为基本指令
     write_cmd(0x0c); // 显示开
-    delay(5);
     write_cmd(0x01); // 清屏
-    delay(5);
     write_cmd(0x06);
-    delay(5);
 }
 
 /********************************************************************
@@ -114,7 +107,34 @@ void display(unsigned char x, unsigned char y, unsigned char *string)
     }
     while (*string != '\0')
     {
+        Nop(5);
         write_data(*string);
         string++;
+    }
+}
+
+void clearTable(unsigned char x)
+{
+    unsigned char i;
+    switch (x)
+    {
+    case 0:
+        write_cmd(0x80);
+        break;
+    case 1:
+        write_cmd(0x90);
+        break;
+    case 2:
+        write_cmd(0x88);
+        break;
+    case 3:
+        write_cmd(0x98);
+        break;
+    default:
+        break;
+    }
+    for (i = 0; i < 16; i++)
+    {
+        write_data(0x20);
     }
 }

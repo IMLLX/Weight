@@ -1,13 +1,13 @@
 #include "weigh.h"
 #include "queue.h"
 unsigned long queue[3];
-unsigned char curr = 0;
+unsigned char curr;
 
 void push(unsigned long val)
 {
     if (curr > 2)
-        return;
-    queue[++curr] = val;
+        curr = 2;
+    queue[curr++] = val;
     return;
 }
 
@@ -41,7 +41,6 @@ void initQue()
     {
         push(Hx711());
     }
-    curr = 2;
     return;
 }
 
